@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit'
-import React from 'react'
+import { createSlice} from '@reduxjs/toolkit'
+
 
 export interface Cart {
     id: number
@@ -15,7 +15,6 @@ const cartSlice = createSlice({
     initialState:initialState,
     reducers:{
         add (state, action) {
-            
             state.push(action.payload)
         },
         remove(state, action) {
