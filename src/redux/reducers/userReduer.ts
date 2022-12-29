@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 
-
 import axios, { AxiosResponse } from "axios"
 import { Users } from "../../types/users"
 

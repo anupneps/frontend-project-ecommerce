@@ -14,7 +14,6 @@ const sortName = () =>{
     
   }
 
-
   useEffect(()=>{
    dispatch(fetchAllProducts())
   }, [])

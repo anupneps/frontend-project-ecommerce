@@ -22,9 +22,7 @@ const productSlice = createSlice({
     name:"productSlice",
     initialState:initialState,
     reducers:{
-  
-
-       sortByName:(state, action:PayloadAction<'asc'|'desc'>)=>{ 
+         sortByName:(state, action:PayloadAction<'asc'|'desc'>)=>{ 
             if(action.payload === 'asc'){
                 state.sort((a,b)=>a.title.localeCompare(b.title))
             } else{
@@ -58,8 +56,6 @@ const productSlice = createSlice({
             return state
            }
            return action.payload
-           
-           
         })
         build.addCase(fetchAllProducts.rejected, (state, action)=>{
             console.log("Error in fetching data")
@@ -69,8 +65,6 @@ const productSlice = createSlice({
             console.log("Data is loading")
             return state
         })
-
-        
     }
 })
 
