@@ -1,11 +1,10 @@
 import { createSlice} from '@reduxjs/toolkit'
 
-
 export interface Cart {
-    id: number
-    name: string
+    id:number
+    title:string
     price:number
-    description:string
+    images:string[]
 }
 
 const initialState:Cart[] = []
@@ -18,10 +17,9 @@ const cartSlice = createSlice({
             state.push(action.payload)
         },
         remove(state, action) {
-            state= state.filter(item => item.id !== action.payload)
+            return state.filter(item => item.id !== action.payload)
         }
     }
-  
 })
 
 const cartReducer =  cartSlice.reducer
