@@ -6,20 +6,20 @@ import { createUser } from '../redux/reducers/AuthenticationReducer'
 const Register = () => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')  
+    const [password, setPassword] = useState('')
     // const[avatar, setAvatar]=useState('')
 
     const dispatch = useAppDispatch()
-    const register = ()=>{
+    const register = () => {
         dispatch(createUser({
-            'name':`${name}`,
+            'name': `${name}`,
             'email': `${email}`,
-            'password':`${password}`,
-            'avatar':`https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png`
+            'password': `${password}`,
+            'avatar': `https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png`
         }))
     }
     dispatch(addUsers)
-    
+
     return (
         <div>
             <form className='register' >
