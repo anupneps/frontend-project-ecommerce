@@ -44,6 +44,12 @@ const productSlice = createSlice({
             }else{
                 throw new Error("Item not found")
             }
+        },
+        sortByPrice: (state, action:PayloadAction<'asc'>)=>{
+            if(action.payload === 'asc'){
+               state.sort((a,b)=>(a.price)-(b.price)) 
+            }
+            
         }
         
     }, 
@@ -69,7 +75,7 @@ const productSlice = createSlice({
 })
 
 const productReducer = productSlice.reducer
-export const{sortByName, deleteItem, modifyItem} = productSlice.actions
+export const{sortByName, deleteItem, modifyItem, sortByPrice} = productSlice.actions
 export default productReducer
 
 

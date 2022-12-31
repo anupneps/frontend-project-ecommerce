@@ -2,12 +2,13 @@ import { Box, Button, Card, CardActions, CardContent, CardMedia, Grid, InputAdor
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHook'
-import { add } from '../redux/reducers/cartReducer'
-import { fetchAllProducts, sortByName } from '../redux/reducers/productReducer'
+import { add, CartItems } from '../redux/reducers/cartReducer'
+import { fetchAllProducts, sortByName, sortByPrice } from '../redux/reducers/productReducer'
 import { Product } from '../types/product'
 import { OutlinedInput } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
+
 
 
 const Products = () => {
@@ -19,6 +20,9 @@ const Products = () => {
     dispatch(sortByName('desc'))
   }
 
+  const sortPrice = () => {
+    dispatch(sortByPrice('asc'))
+  }
   useEffect(() => {
     dispatch(fetchAllProducts())
   }, [dispatch])
@@ -30,24 +34,24 @@ const Products = () => {
 
   return (
     <>
-      <Box marginTop={'20px'} sx={{ display: 'flex', justifyContent: 'center', alignItems:'center' }}>
+      <Box marginTop={'20px'} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <TextField placeholder='Search Product' color='primary' sx={{ width: '500px' }}
           InputProps={{
             endAdornment: (<InputAdornment position='start'>
               <SearchIcon />
             </InputAdornment>)
           }} />
-          <FilterAltIcon sx={{fontSize: '40px', marginLeft:'40px'}}/>
-          <Box flexDirection={'row'} alignContent={'center'} >
-            <Button onClick={()=>sortName()}>In Order</Button>
-            <Button>By Price</Button>
-          </Box>
+        <FilterAltIcon sx={{ fontSize: '40px', marginLeft: '40px' }} />
+        <Box flexDirection={'row'} alignContent={'center'} >
+          <Button onClick={() => sortName()}>In Order</Button>
+          <Button onClick={() => sortPrice()}>By Price</Button>
+        </Box>
       </Box>
 
       <Grid container spacing={4} margin='20px' >
         {products.map(product => (
           <Grid item xs={6} md={3} >
-            <Card onClick={() => alert('product!')} sx={{ cursor: 'pointer' }}>
+            <Card sx={{ cursor: 'pointer' }}>
               <CardMedia
                 sx={{ height: 200 }}
                 image={product.images[0]}

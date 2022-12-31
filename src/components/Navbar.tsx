@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom'
 import { useAppSelector } from '../hooks/reduxHook';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { AppBar, Box, CssBaseline, ImageList, Toolbar, Typography } from '@mui/material';
@@ -20,13 +20,12 @@ const Navbar = () => {
         <AppBar color='transparent' position='static' sx={{height:'80px', alignContent:'center', backgroundColor:""}}  >
             <CssBaseline />
             <Toolbar sx={{display:'flex', justifyContent:'space-between'}}>
-                <ImageList>
-                    <img style={{height:'60px'}} src={require('../images/logoWhite.PNG')} alt=""  />
-                    
+                <ImageList sx={{cursor:'pointer'}}>
+                <img style={{height:'60px'}} src={require('../images/logoWhite.PNG')} alt="" />
                 </ImageList>
-                {/* <Typography variant='h6'>
-                    ORDERLY
-                </Typography> */}
+                <Typography variant='h6'>
+                    Hello ANUP
+                </Typography>
                 <Box mt={2} marginRight={2} sx={{color:'red', display:'flex', alignItems:'center', justifyContent:'space-between'}}>
                     <Link style={link} to="/" >Home</Link>
                     <Link style={link} to="/" >About</Link>
