@@ -14,6 +14,7 @@ return(
   <Navbar/>
   <Routes>
     <Route path='/' element ={<Home />}></Route>
+    <Route path='/home' element ={<Home />}></Route>
     <Route path='/cart' element ={<Cart />}></Route>
     <Route path ='/signup' element={<Register/>}></Route>
     <Route path ='/login' element={<LoginIn/>}></Route>

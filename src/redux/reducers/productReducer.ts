@@ -8,7 +8,7 @@ export const fetchAllProducts = createAsyncThunk(
     "fetchAllProducts", 
     async () =>{
         try {
-            const jsondata = await fetch("https://api.escuelajs.co/api/v1/products")
+            const jsondata = await fetch("https://fakestoreapi.com/products")
             const data:Product[]|Error = await jsondata.json()
             return data
         } catch (e:any) {

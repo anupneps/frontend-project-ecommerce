@@ -1,4 +1,3 @@
-
 import { CardMedia } from '@mui/material';
 import Card from '@mui/material/Card';
 import Products from '../components/Products';
@@ -8,9 +7,8 @@ const Home = () => {
         <>
        <Card>
         <CardMedia 
-              sx={{ height: 200, width:'100vw' }}
+              sx={{ height: 200, width:'100%' }}
               image='https://cdn.pixabay.com/photo/2021/10/24/20/07/christmas-banner-6739203_1280.jpg'
-              
             />
        </Card>
        <Products/>

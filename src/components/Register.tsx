@@ -1,8 +1,8 @@
 import { Button, Divider, Grid, Link, OutlinedInput, Stack, Typography } from '@mui/material'
 import { useState } from 'react'
 import { useAppDispatch } from '../hooks/reduxHook'
-import { addUsers } from '../redux/reducers/AuthenticationReducer'
-import { createUser } from '../redux/reducers/AuthenticationReducer'
+// import { addUsers } from '../redux/reducers/authenticationReducer'
+import { createUser } from '../redux/reducers/authenticationReducer'
 
 const Register = () => {
     const [name, setName] = useState('')
@@ -19,7 +19,7 @@ const Register = () => {
             'avatar': `https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png`
         }))
     }
-    dispatch(addUsers)
+    // dispatch(addUsers)
 
     return (
         // <div>

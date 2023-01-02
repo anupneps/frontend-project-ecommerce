@@ -1,20 +1,14 @@
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Grid, InputAdornment, TextField, Typography } from '@mui/material'
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHook'
 import { add, CartItems } from '../redux/reducers/cartReducer'
 import { fetchAllProducts, sortByName, sortByPrice } from '../redux/reducers/productReducer'
-import { Product } from '../types/product'
-import { OutlinedInput } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
-
-
 
 const Products = () => {
   const products = useAppSelector(state => state.productReducer)
   const dispatch = useAppDispatch()
-  console.log("product List: ", products)
 
   const sortName = () => {
     dispatch(sortByName('desc'))
@@ -23,11 +17,12 @@ const Products = () => {
   const sortPrice = () => {
     dispatch(sortByPrice('asc'))
   }
+
   useEffect(() => {
     dispatch(fetchAllProducts())
   }, [dispatch])
 
-  const addToCart = (product: Product) => {
+  const addToCart = (product: CartItems) => {
     dispatch(add(product))
 
   }
@@ -48,13 +43,13 @@ const Products = () => {
         </Box>
       </Box>
 
-      <Grid container spacing={4} margin='20px' >
+      <Grid container spacing={4} margin='20px' width={'fit-content'} >
         {products.map(product => (
           <Grid item xs={6} md={3} >
             <Card sx={{ cursor: 'pointer' }}>
               <CardMedia
                 sx={{ height: 200 }}
-                image={product.images[0]}
+                image={product.image}
               />
 
               <CardContent>
@@ -77,20 +72,7 @@ const Products = () => {
         ))}
       </Grid>
     </>
-
-
-
-    // <div className=''>
-    //   {<button onClick={sortName}>Sort</button>}
-    //   {products.map(product => 
-    //   (<div className='card'><p key = {`${product.id}+${product.title}`}>{product.title}</p>
-    //         <img src={product.images[0]} alt="" />
-    //         <button onClick={()=>addToCart(product)}>Add To Cart</button>
-    //   </div>))}
-
-    // </div>
   )
 }
-
 
 export default Products

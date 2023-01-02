@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 import axios, { AxiosResponse } from 'axios'
 import {Users} from '../../types/users'
@@ -10,13 +10,11 @@ export interface Authentication{
     loading:boolean
     error:any
 }
-const initialState:Authentication = {
-    message:"",
-    user:[],
-    token:'',
-    loading:false,
-    error:''
+
+export interface AuthState {
+    authentication: Authentication[]
 }
+const initialState:AuthState[] = []
 
 export const createUser = createAsyncThunk(
     "createUser", 
@@ -48,30 +46,30 @@ const authenticationSlice = createSlice({
     name: 'authenciationSlice',
     initialState:initialState,
     reducers:{
-       addToken: (state, action:PayloadAction<Authentication>)=>{
-            state.token = action.payload.token
-       },
-       addUsers: (state, action)=>{
-           state.user.push(action.payload.user)
-       }
-    },
-    extraReducers:(build)=> {
-        build.addCase(createUser.pending, (state,action)=>{
-            state.loading = true
+    //    addToken: (state:Authentication, action:PayloadAction<Authentication>)=>{
+    //         return state.token = action.payload.
+    //    },
+    //    addUsers: (state, action)=>{
+    //        state.user.push(action.payload.user)
+    //    }
+    // },
+    // extraReducers:(build)=> {
+    //     build.addCase(createUser.pending, (state,action)=>{
+    //         state.loading = true
             
-        })
-        build.addCase(createUser.fulfilled, (state, action)=>{
-            state.loading=false
-            console.log(action.payload)
+    //     })
+    //     build.addCase(createUser.fulfilled, (state, action)=>{
+    //         state.loading=false
+    //         console.log(action.payload)
                    
 
-            // if(action.payload && "message" in action.payload){
-            //     return state
-            //    }else if (!action.payload){
-            //     return state
-            //    }
-            //    return action.payload
-        })
+    //         // if(action.payload && "message" in action.payload){
+    //         //     return state
+    //         //    }else if (!action.payload){
+    //         //     return state
+    //         //    }
+    //         //    return action.payload
+    //     })
     },
         
 })
@@ -79,5 +77,5 @@ const authenticationSlice = createSlice({
 
 
 const authenticationReducer = authenticationSlice.reducer
-export const {addToken, addUsers} = authenticationSlice.actions
+// export const {addToken, addUsers} = authenticationSlice.actions
 export default authenticationReducer

@@ -5,7 +5,7 @@ import OutlinedInput from '@mui/material/OutlinedInput'
 import Typography from '@mui/material/Typography'
 import {useState } from 'react'
 import { useAppDispatch} from '../hooks/reduxHook'
-import { autheticateUser } from '../redux/reducers/AuthenticationReducer'
+import { autheticateUser } from '../redux/reducers/authenticationReducer'
 import { Divider } from '@mui/material';
 
 
