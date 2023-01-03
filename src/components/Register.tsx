@@ -2,7 +2,7 @@ import { Button, Divider, Grid, Link, OutlinedInput, Stack, Typography } from '@
 import { useState } from 'react'
 import { useAppDispatch } from '../hooks/reduxHook'
 // import { addUsers } from '../redux/reducers/authenticationReducer'
-import { createUser } from '../redux/reducers/authenticationReducer'
+// import { createUser } from '../redux/reducers/authenticationReducer'
 
 const Register = () => {
     const [name, setName] = useState('')
@@ -10,15 +10,15 @@ const Register = () => {
     const [password, setPassword] = useState('')
     const[avatar, setAvatar]=useState('')
 
-    const dispatch = useAppDispatch()
-    const register = () => {
-        dispatch(createUser({
-            'name': `${name}`,
-            'email': `${email}`,
-            'password': `${password}`,
-            'avatar': `https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png`
-        }))
-    }
+    // const dispatch = useAppDispatch()
+    // const register = () => {
+    //     dispatch(createUser({
+    //         'name': `${name}`,
+    //         'email': `${email}`,
+    //         'password': `${password}`,
+    //         'avatar': `https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png`
+    //     }))
+    // }
     // dispatch(addUsers)
 
     return (
@@ -51,7 +51,7 @@ const Register = () => {
           <OutlinedInput type='email' placeholder='Email Address' required value={email} onChange={(e) => setEmail(e.target.value)} ></OutlinedInput>
           <OutlinedInput type='password' placeholder='Password' required value={password} onChange={(e) => setPassword(e.target.value)} ></OutlinedInput>
           <OutlinedInput type='file' required value={avatar}  onChange={(e) => setAvatar(e.target.value)} ></OutlinedInput>
-          <Button onClick={register} color='success'>Signup</Button>
+          {/* <Button onClick={register} color='success'>Signup</Button> */}
           <Divider/>
           <Typography variant='body2' > Already registered? <Link href='/login' variant='body2'>Sign-In</Link></Typography>
           

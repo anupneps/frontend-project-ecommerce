@@ -4,16 +4,22 @@ import Grid from '@mui/material/Grid'
 import OutlinedInput from '@mui/material/OutlinedInput'
 import Typography from '@mui/material/Typography'
 import {useState } from 'react'
-import { useAppDispatch} from '../hooks/reduxHook'
+import { useAppDispatch, useAppSelector} from '../hooks/reduxHook'
 import { autheticateUser } from '../redux/reducers/authenticationReducer'
 import { Divider } from '@mui/material';
+import { redirect, useNavigate } from 'react-router-dom'
 
 
 
 const Register = () => {
+    let navigate = useNavigate();
+    const routeChange =()=>{
+        navigate('/home')
+    }
+    
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
+    const userAuth = useAppSelector(state=> state.authenticationReducer)
     const dispatch = useAppDispatch()
     const register = ()=>{
         
@@ -21,6 +27,7 @@ const Register = () => {
             "email": `${email}`,
             "password":`${password}`
         }))
+        routeChange()
     }
     
     return (
@@ -35,14 +42,13 @@ const Register = () => {
             justifyContent: 'center',
             flexDirection: 'column',
             alignItems: 'center',
-            
-           
           }}> 
           <Stack spacing={2} padding='20px' sx={{ width: '500px', border: '2px solid grey' }}>
           <Typography align='center' variant='h4' >LOG IN  </Typography>
-          <OutlinedInput placeholder='Email Address' required ></OutlinedInput>
-          <OutlinedInput placeholder='Password' required ></OutlinedInput>
-          <Button color='success'>Login</Button>
+          {userAuth.isSuccess ? <Typography>Login success!!</Typography>:<Typography>Login Failed!!</Typography>}
+          <OutlinedInput placeholder='Email Address' value={email} required onChange={(e)=> setEmail(e.target.value)} ></OutlinedInput>
+          <OutlinedInput placeholder='Password' value={password} required onChange={(e)=> setPassword(e.target.value)} ></OutlinedInput>
+          <Button onClick={register} color='success'>Login</Button>
           <Divider/>
           <Typography variant='body2' >Not registered? <Link href='/signup' variant='body2'>Sign-Up</Link></Typography>
           </Stack>
@@ -53,3 +59,4 @@ const Register = () => {
 }
 
 export default Register
+
