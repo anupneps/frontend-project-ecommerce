@@ -3,35 +3,38 @@ import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
 import OutlinedInput from '@mui/material/OutlinedInput'
 import Typography from '@mui/material/Typography'
-import {useState } from 'react'
-import { useAppDispatch, useAppSelector} from '../hooks/reduxHook'
-import { autheticateUser } from '../redux/reducers/authenticationReducer'
+import { useEffect, useState } from 'react'
+import { useAppDispatch, useAppSelector } from '../hooks/reduxHook'
 import { Divider } from '@mui/material';
-import { redirect, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
+import { autheticateUser } from '../redux/reducers/authenticationReducer'
 
-
-const Register = () => {
+const Login = () => {
     let navigate = useNavigate();
-    const routeChange =()=>{
-        navigate('/home')
+    const routeChange = () => {
+        navigate('/')
     }
-    
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const userAuth = useAppSelector(state=> state.authenticationReducer)
+    const userAuth = useAppSelector(state => state.authenticationReducer)
     const dispatch = useAppDispatch()
-    const register = ()=>{
-        
+
+    const loginHandle = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.preventDefault()
         dispatch(autheticateUser({
             "email": `${email}`,
-            "password":`${password}`
+            "password": `${password}`
         }))
-        routeChange()
     }
-    
-    return (
 
+    useEffect(() => {
+        if (userAuth.isAuthenticated) {
+            routeChange()
+        } 
+    },)
+
+    return (
         <Grid item md={4} sx={{
             height: '100vh',
             position: 'fixed',
@@ -42,21 +45,20 @@ const Register = () => {
             justifyContent: 'center',
             flexDirection: 'column',
             alignItems: 'center',
-          }}> 
-          <Stack spacing={2} padding='20px' sx={{ width: '500px', border: '2px solid grey' }}>
-          <Typography align='center' variant='h4' >LOG IN  </Typography>
-          {userAuth.isSuccess ? <Typography>Login success!!</Typography>:<Typography>Login Failed!!</Typography>}
-          <OutlinedInput placeholder='Email Address' value={email} required onChange={(e)=> setEmail(e.target.value)} ></OutlinedInput>
-          <OutlinedInput placeholder='Password' value={password} required onChange={(e)=> setPassword(e.target.value)} ></OutlinedInput>
-          <Button onClick={register} color='success'>Login</Button>
-          <Divider/>
-          <Typography variant='body2' >Not registered? <Link href='/signup' variant='body2'>Sign-Up</Link></Typography>
-          </Stack>
-    
+        }}>
+            <Stack spacing={2} padding='20px' sx={{ width: '500px', border: '2px solid grey' }}>
+                <Typography align='center' variant='h4' >LOG IN  </Typography>
+                {/* <Typography>{userAuth.isError ? '' : 'Login Failed'}</Typography>  */}
+                {/* <Typography>{loginStatus}</Typography> */}
+                <OutlinedInput placeholder='Email Address' value={email} required onChange={(e) => setEmail(e.target.value)} ></OutlinedInput>
+                <OutlinedInput placeholder='Password' value={password} required onChange={(e) => setPassword(e.target.value)} ></OutlinedInput>
+                <Button onClick={(e) => loginHandle(e)} color='success'>Login</Button>
+                <Divider />
+                <Typography variant='body2' >Not registered? <Link href='/signup' variant='body2'>Sign-Up</Link></Typography>
+            </Stack>
         </Grid>
-
     )
 }
 
-export default Register
+export default Login
 

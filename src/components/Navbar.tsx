@@ -1,11 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHook';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { AppBar, Box, CssBaseline, ImageList, Menu, MenuItem, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, CssBaseline, ImageList, Toolbar, Typography } from '@mui/material';
 import { Avatar } from '@mui/material';
-import { userData } from '../redux/reducers/authenticationReducer';
-import { useState } from 'react';
-
 
 const link = {
     textDecoration: "none",
@@ -17,7 +14,7 @@ const link = {
 
 const Navbar: React.FC = () => {
     const dispatch = useAppDispatch()
-    const userInfo = useAppSelector(state => state.authenticationReducer.user)
+    const userInfo = useAppSelector(state => state.authenticationReducer)
     let navigate = useNavigate();
     const routeChange = () => {
         navigate('/home');
@@ -33,7 +30,7 @@ const Navbar: React.FC = () => {
                     <img onClick={routeChange} style={{ height: '60px' }} src={require('../images/logoWhite.PNG')} alt="" />
                 </ImageList>
                 <Typography variant='h6'>
-                    Hello {userData}
+                {userInfo.isAuthenticated ? 'Hello '+ userInfo.user?.name :' '}
                 </Typography>
                 <Box mt={2} marginRight={2} sx={{ color: 'red', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     <Link style={link} to="/" >Home</Link>
@@ -45,21 +42,12 @@ const Navbar: React.FC = () => {
                             borderRadius: '50%', paddingLeft: '2px', paddingRight: '2px', width: '20px', backgroundColor: 'black',
                             visibility: cartItem.cart.length !== 0 ? 'visible' : 'hidden'
                         }}>{cartItem.cart.length}</span></Link>
-                    <Avatar sx={{ backgroundColor: 'orange' }}>{userInfo?.avatar}</Avatar>
-                    <Box>
-                        <MenuItem>
-                            <Typography> Hello {userInfo?.name}  </Typography>
-                        </MenuItem>
-                        <MenuItem>
-                            <Typography> {userInfo?.email}  </Typography>
-                        </MenuItem>
-                        <MenuItem>
-                            <Typography> {userInfo?.role}  </Typography>
-                        </MenuItem>
-                    </Box>
 
 
-                    {/* <Link style={link} to="/" ><Avatar sx={{ backgroundColor: 'orange' }}>A</Avatar></Link> */}
+                    {userInfo.isAuthenticated ? <Link style={link} to="/profile" ><Avatar alt="User Profile" src={userInfo?.user?.avatar} /></Link> :
+                        <Link style={link} to="/login" ><Avatar alt="User Profile" src={userInfo?.user?.avatar} />
+                            <Typography variant='body2' fontWeight={'bold'} >Login</Typography></Link>
+                    }
                 </Box>
             </Toolbar>
         </AppBar>

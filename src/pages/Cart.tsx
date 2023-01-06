@@ -3,33 +3,44 @@ import Typography from '@mui/material/Typography';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHook'
-import { CartItems, increment, decrement, remove } from '../redux/reducers/cartReducer';
 
-const Cart:React.FC = () => {
+import { increment, decrement, remove } from '../redux/reducers/cartReducer';
+import { Product } from '../types/product';
+
+const Cart: React.FC = () => {
    let navigate = useNavigate();
-    const routeChange = () => {
-    navigate('/home');
-    }
+   const routeChange = () => {
+      navigate('/home');
+   }
 
    const [total, setTotal] = useState<number>(0)
    const cartItems = useAppSelector(state => state.cartReducer)
    const dispatch = useAppDispatch()
 
-   const deleteItem = (product: CartItems) => {
+   const deleteItem = (product: Product) => {
       dispatch(remove(product))
    }
 
-   const handleAddCounter = (productId: CartItems) => {
+   const handleAddCounter = (productId: Product) => {
       dispatch(increment(productId))
    }
 
-   const handleMinusCounter = (productId: CartItems) => {
+   const handleMinusCounter = (productId: Product) => {
       dispatch(decrement(productId))
    }
 
+
+   const totalSum = cartItems.cart.reduce((acc, cur) => {
+      let sum = 0
+      if (cur.subTotal) {
+         sum = acc + cur.subTotal
+      }
+      return sum
+   }, 0)
+
    useEffect(() => {
-      setTotal((cartItems.cart.reduce((acc, cur) => acc + cur.subTotal, 0)))
-   }, [cartItems.cart])
+      setTotal(totalSum)
+   }, [totalSum])
 
    return (
       <>
@@ -43,29 +54,27 @@ const Cart:React.FC = () => {
             <Grid item display={'flex'} flexDirection='row' xs={10} md={8} gap={8} >
                <Grid item display={'flex'} flexDirection='column' justifyContent={'space-evenly'} gap={2} width='100%' alignSelf={'center'}>
                   {cartItems.cart.map(product => (
-                     <Card  sx={{ cursor: 'pointer', display: 'flex', padding:'10px'}}>
-                        <CardMedia 
+                     <Card key={product.id} sx={{ cursor: 'pointer', display: 'flex', padding: '10px' }}>
+                        <CardMedia
                            sx={{ height: 200, width: 200 }}
-                           image={product.image}
+                           image={product.images[0]}
                         />
-                        <CardContent sx={{ textAlign: 'left', width:'40%', padding:'10px'  }}>
+                        <CardContent sx={{ textAlign: 'left', width: '40%', padding: '10px' }}>
                            <Typography variant='body2' gutterBottom  >
                               {product.title}
                            </Typography>
-
                            <Typography variant='h6' fontWeight={'400'}>
                               € {product.price}
                            </Typography>
                         </CardContent>
-                        <CardActions sx={{padding:'10px', width:'20%', display:'flex', justifyContent:'center'}}  >
+                        <CardActions sx={{ padding: '10px', width: '20%', display: 'flex', justifyContent: 'center' }}  >
                            <Button onClick={() => (handleAddCounter(product))} variant='contained' > + </Button>
                            <Typography variant='h6' padding={'5px'} >{product.quantity}</Typography>
                            <Button onClick={() => handleMinusCounter(product)} variant='contained' > - </Button>
                         </CardActions>
-                        <Box padding={'10px'} width='20%'><Typography variant='body2'  >
-                           SubTotal(€):{(product.subTotal).toFixed(2)}
-                        </Typography></Box>
-                        
+                        <Box padding={'10px'} width='20%'>
+                           <Typography variant='body2'>SubTotal(€):{(product.subTotal ? product.subTotal : product.price).toFixed(2)}</Typography>
+                        </Box>
                         <CardActions>
                            <Button onClick={() => deleteItem(product)} variant='contained' > Remove </Button>
                         </CardActions>
@@ -81,7 +90,7 @@ const Cart:React.FC = () => {
                         <Typography variant='h6' fontWeight={'700'} margin={'10px'}>Total Price: <span style={{ marginLeft: '20px' }} >€ {total.toFixed(2)}</span></Typography>
                      </>}
                   {total ? <Button sx={{ margin: '10px' }} variant='contained' color='primary' >CheckOut</Button> : ""}
-                  <Link onClick={routeChange} sx={{ margin: '10px', cursor:'pointer' }} >Continue Shopping</Link>
+                  <Link onClick={routeChange} sx={{ margin: '10px', cursor: 'pointer' }} >Continue Shopping</Link>
                </Box>
             </Grid>
          </Box>

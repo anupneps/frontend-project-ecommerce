@@ -6,8 +6,7 @@ export interface Product {
     description:string
     price:number
     category: Category
-    image:string
-    quantity:number
-    subTotal:number
-    
+    images:string[]
+    quantity?:number
+    subTotal?:number
 }

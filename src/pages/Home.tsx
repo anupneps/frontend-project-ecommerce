@@ -7,7 +7,6 @@ const Home = () => {
 
     const dispatch = useAppDispatch()
     const userInfo = useAppSelector(state=>state.authenticationReducer.user)
-
     
     return (
         <>
@@ -17,11 +16,6 @@ const Home = () => {
               image='https://cdn.pixabay.com/photo/2021/10/24/20/07/christmas-banner-6739203_1280.jpg'
             />
        </Card>
-        <Typography> 
-          {userInfo?.name}  
-        </Typography>
-        
-
        <Products/>
        </>
     );

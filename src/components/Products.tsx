@@ -1,17 +1,21 @@
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Grid, InputAdornment, TextField, Typography } from '@mui/material'
-import { useEffect } from 'react'
+import { useEffect} from 'react'
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHook'
-import { add, CartItems } from '../redux/reducers/cartReducer'
-import { fetchAllProducts, sortByName, sortByPrice } from '../redux/reducers/productReducer'
 import SearchIcon from '@mui/icons-material/Search';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 
+import { add } from '../redux/reducers/cartReducer'
+import { fetchAllProducts, sortByName, sortByPrice } from '../redux/reducers/productReducer'
+import { Product } from '../types/product';
+
 const Products = () => {
-  const products = useAppSelector(state => state.productReducer)
   const dispatch = useAppDispatch()
+  const products = useAppSelector(state => state.productReducer)
+  const featuredProductsList = products.slice(11, 40)
+  // const recommondedProductsList = products.slice(345)
 
   const sortName = () => {
-    dispatch(sortByName('desc'))
+    dispatch(sortByName('asc'))
   }
 
   const sortPrice = () => {
@@ -22,9 +26,8 @@ const Products = () => {
     dispatch(fetchAllProducts())
   }, [dispatch])
 
-  const addToCart = (product: CartItems) => {
+  const addToCart = (product: Product) => {
     dispatch(add(product))
-
   }
 
   return (
@@ -42,16 +45,15 @@ const Products = () => {
           <Button onClick={() => sortPrice()}>By Price</Button>
         </Box>
       </Box>
-
-      <Grid container spacing={4} margin='20px' width={'fit-content'} >
-        {products.map(product => (
-          <Grid item xs={6} md={3} >
+      <Typography variant='h4' marginLeft={'50px'} >Featured Products</Typography>
+      <Grid container spacing={4} width={'fit-content'} >
+        {featuredProductsList.map(product => (
+          <Grid key={product.id} marginLeft='50px' item xs={6} md={'auto'} >
             <Card sx={{ cursor: 'pointer' }}>
               <CardMedia
                 sx={{ height: 200 }}
-                image={product.image}
+                image={product.images[0]}
               />
-
               <CardContent>
                 <Typography variant='h6' gutterBottom noWrap >
                   {product.title}
@@ -60,12 +62,9 @@ const Products = () => {
                 <Typography variant='body2' color="text.secondary">
                   € {product.price}
                 </Typography>
-
               </CardContent>
-
               <CardActions>
                 <Button onClick={() => addToCart(product)} variant='contained'> Add To Cart </Button>
-
               </CardActions>
             </Card>
           </Grid>
