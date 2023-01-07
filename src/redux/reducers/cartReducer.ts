@@ -1,13 +1,6 @@
 import { createSlice, PayloadAction} from '@reduxjs/toolkit'
 import { Product } from '../../types/product'
 
-// export interface CartItems extends Product {
-//     quantity: number
-//     subTotal:number
-// }
-
-// export type Cart = Product[]
-
 interface CartState {
     cart:Product[]
 }
@@ -25,6 +18,7 @@ const cartSlice = createSlice({
             if(productInCart && productInCart.quantity){
                productInCart.quantity +=1
                productInCart.subTotal= productInCart.price * productInCart.quantity
+               return
             }
              state.cart.push({...action.payload, quantity:1, subTotal:0})
         },

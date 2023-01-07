@@ -30,21 +30,27 @@ const Cart: React.FC = () => {
    }
 
 
-   const totalSum = cartItems.cart.reduce((acc, cur) => {
-      let sum = 0
-      if (cur.subTotal) {
-         sum = acc + cur.subTotal
-      }
-      return sum
-   }, 0)
+   // const totalSum = cartItems.cart.reduce((acc, cur) => {
+   //    let sum = 0
+   //    if (cur.subTotal) {
+   //       sum = acc + cur.subTotal
+   //    }
+   //    return sum
+   // }, 0)
 
    useEffect(() => {
-      setTotal(totalSum)
-   }, [totalSum])
+      setTotal(cartItems.cart.reduce((acc, cur) => {
+         let sum = 0
+         if (cur.subTotal) {
+            sum = acc + cur.subTotal
+         }
+         return sum
+      }, 0))
+   }, [cartItems.cart])
 
    return (
       <>
-         <Box mb={8} px={4} marginTop='40px' >
+         <Box mb={8} px={4} marginTop='40px' marginBottom='5%' width={'100%'} height={'100%'} >
             <Typography variant='h4'>
                Shopping Cart
             </Typography>
@@ -86,8 +92,10 @@ const Cart: React.FC = () => {
                   {cartItems.cart.length < 1 ? <Typography variant='h6' margin={'10px'}>Your cart is empty !</Typography> :
                      <>
                         <Typography variant='h5' fontWeight={'700'} marginBottom={'20px'}>Summary</Typography>
-                        <Typography variant='h6' fontWeight={'700'} margin={'10px'}>Total items: <span style={{ marginLeft: '20px' }} >{cartItems.cart.length}</span> </Typography>
-                        <Typography variant='h6' fontWeight={'700'} margin={'10px'}>Total Price: <span style={{ marginLeft: '20px' }} >€ {total.toFixed(2)}</span></Typography>
+                        <Typography variant='h6' fontWeight={'700'} margin={'10px'}>Total items: <span style={{ marginLeft: '20px' }} >
+                           {cartItems.cart.length}</span> </Typography>
+                        <Typography variant='h6' fontWeight={'700'} margin={'10px'}>Total Price: <span style={{ marginLeft: '20px' }} >
+                           € {total.toFixed(2)}</span></Typography>
                      </>}
                   {total ? <Button sx={{ margin: '10px' }} variant='contained' color='primary' >CheckOut</Button> : ""}
                   <Link onClick={routeChange} sx={{ margin: '10px', cursor: 'pointer' }} >Continue Shopping</Link>

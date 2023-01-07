@@ -6,6 +6,9 @@ import Navbar from './components/Navbar';
 import Register from './components/Register';
 import LoginIn from './components/LoginIn';
 import Profile from './pages/Profile';
+import Products from './components/Products';
+import SingleProduct from './pages/SingleProduct';
+import Footer from './pages/Footer';
 
 
 const App = () => {
@@ -13,20 +16,23 @@ const App = () => {
   //   const routeChange = () => {
   //       navigate('/login');
   //   }
-  
-    
-return(
-  <BrowserRouter>
-  <Navbar/>
-  <Routes>
-    <Route path='/' element ={<Home />}></Route>
-    <Route path='/home' element ={<Home />}></Route>
-    <Route path='/cart' element ={<Cart />}></Route>
-    <Route path ='/signup' element={<Register/>}></Route>
-    <Route path ='/login' element={<LoginIn/>}></Route>
-    <Route path ='/profile' element={<Profile/>}></Route> 
-  </Routes>
-  </BrowserRouter>
-)
+
+
+  return (
+    <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route path='/' element={<Home />}></Route>
+        <Route path='/home' element={<Home />}></Route>
+        <Route path='/cart' element={<Cart />}></Route>
+        <Route path='/signup' element={<Register />}></Route>
+        <Route path='/login' element={<LoginIn />}></Route>
+        <Route path='/profile' element={<Profile />}></Route>
+        <Route path="/products/:id" element={<SingleProduct />}></Route>
+      </Routes>
+      <Footer />
+    </BrowserRouter>
+
+  )
 }
 export default App;

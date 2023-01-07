@@ -31,15 +31,14 @@ const Login = () => {
     useEffect(() => {
         if (userAuth.isAuthenticated) {
             routeChange()
-        } 
+        }
     },)
 
     return (
         <Grid item md={4} sx={{
-            height: '100vh',
-            position: 'fixed',
-            right: 0,
-            top: 0,
+            height: '100%',
+            marginTop: '10%',
+            marginBottom: '10%',
             width: '100%',
             display: 'flex',
             justifyContent: 'center',
@@ -50,8 +49,8 @@ const Login = () => {
                 <Typography align='center' variant='h4' >LOG IN  </Typography>
                 {/* <Typography>{userAuth.isError ? '' : 'Login Failed'}</Typography>  */}
                 {/* <Typography>{loginStatus}</Typography> */}
-                <OutlinedInput placeholder='Email Address' value={email} required onChange={(e) => setEmail(e.target.value)} ></OutlinedInput>
-                <OutlinedInput placeholder='Password' value={password} required onChange={(e) => setPassword(e.target.value)} ></OutlinedInput>
+                <OutlinedInput placeholder='Email Address' type='email' value={email} required onChange={(e) => setEmail(e.target.value)} ></OutlinedInput>
+                <OutlinedInput placeholder='Password' type='password' value={password} required onChange={(e) => setPassword(e.target.value)} ></OutlinedInput>
                 <Button onClick={(e) => loginHandle(e)} color='success'>Login</Button>
                 <Divider />
                 <Typography variant='body2' >Not registered? <Link href='/signup' variant='body2'>Sign-Up</Link></Typography>

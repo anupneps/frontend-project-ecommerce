@@ -11,7 +11,6 @@ export const fetchAllProducts = createAsyncThunk(
     async () => {
         try {
             const jsondata: AxiosResponse<Product[], Product> = await axiosInstance.get('products')
-            console.log(jsondata.data)
             return jsondata.data
         } catch (error: any) {
             throw new Error(error.message)

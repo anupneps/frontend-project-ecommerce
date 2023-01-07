@@ -22,28 +22,15 @@ const Register = () => {
     // dispatch(addUsers)
 
     return (
-        // <div>
-        //     <form className='register' >
-        //         <input type="text" placeholder='Name' value={name} onChange={(e) => setName(e.target.value)} />
-        //         <input type="email" placeholder='email' value={email} onChange={(e) => setEmail(e.target.value)} />
-        //         <input type="password" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
-        //         {/* <input type="file" id="avatar" name="avatar" value={avatar} onChange={(e)=>setAvatar(e.target.value)} accept="image/*"></input> */}
-        //         <input type="button" value="Register" onClick={register} />
-        //     </form>
-        // </div>
-        <>
          <Grid item md={4} sx={{
-            height: '100vh',
-            position: 'fixed',
-            right: 0,
-            top: 0,
+            height: '100%',
+            marginTop: '10%',
+            marginBottom: '10%',
             width: '100%',
             display: 'flex',
             justifyContent: 'center',
             flexDirection: 'column',
             alignItems: 'center',
-            
-           
           }}> 
           <Stack spacing={2} padding='20px' sx={{ width: '500px', border: '2px solid grey' }}>
           <Typography align='center' variant='h4' > SIGN UP  </Typography>
@@ -54,14 +41,8 @@ const Register = () => {
           {/* <Button onClick={register} color='success'>Signup</Button> */}
           <Divider/>
           <Typography variant='body2' > Already registered? <Link href='/login' variant='body2'>Sign-In</Link></Typography>
-          
-          
           </Stack>
-          
-          
-
         </Grid>
-        </>
     )
 }
 
