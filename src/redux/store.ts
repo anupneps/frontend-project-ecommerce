@@ -4,15 +4,19 @@ import cartReducer from './reducers/cartReducer';
 import productReducer from './reducers/productReducer';
 // import userReducer from './reducers/userReduer';
 
-export const store = configureStore({
-  reducer: {
-    productReducer,
-    cartReducer,
-    // userReducer,
-    authenticationReducer
-  },
-});
+export const createStore = () => {
+  return configureStore({
+    reducer: {
+      productReducer,
+      cartReducer,
+      // userReducer,
+      authenticationReducer
+    },
+  });
+}
 
+
+const store = createStore()
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
 export type AppThunk<ReturnType = void> = ThunkAction<

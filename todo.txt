@@ -1,0 +1,9 @@
+category page and product sorting 
+fix total price delayed rendering 
+write unit test 
+enable protected routing 
+admin page for updating products
+form validation 
+more styling 
+
+

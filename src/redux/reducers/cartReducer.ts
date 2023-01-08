@@ -20,7 +20,7 @@ const cartSlice = createSlice({
                productInCart.subTotal= productInCart.price * productInCart.quantity
                return
             }
-             state.cart.push({...action.payload, quantity:1, subTotal:0})
+             state.cart.push({...action.payload, quantity:1, subTotal:action.payload.price})
         },
         remove (state:CartState, action:PayloadAction<Product>) {
         state.cart = state.cart.filter(product => product.id!== action.payload.id)
