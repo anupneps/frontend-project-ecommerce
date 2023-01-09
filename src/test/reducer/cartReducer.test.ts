@@ -1,7 +1,7 @@
 import { add, decrement, emptyCart, increment, remove } from "../../redux/reducers/cartReducer"
 import { createStore } from "../../redux/store"
 import { StoreInterface } from "../../types/StoreInterface"
-import { testProductData } from "../test-data/testData"
+import { testProductData } from "../test-data/productTestData"
 
 let store : StoreInterface
 

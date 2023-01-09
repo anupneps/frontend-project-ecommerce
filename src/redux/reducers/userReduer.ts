@@ -1,17 +1,29 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
-import  { AxiosResponse } from "axios"
+import { AxiosResponse } from "axios"
 
 import axiosInstance from "../../shared/axiosInstance"
 import { Users } from "../../types/users"
 
 const initialState: Users[] = []
 
+export const getAllUsers = createAsyncThunk(
+    "getAllUsers",
+    async () => {
+        try {
+            const response: AxiosResponse<Users, Users> = await axiosInstance.get("users")
+            return response.data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+)
+
+
 export const createUser = createAsyncThunk(
     "createUser",
     async (user: Users) => {
         try {
             const response: AxiosResponse<Users, Users> = await axiosInstance.post("users", user)
-            console.log(response.data)
             return response.data
         } catch (error) {
             console.log(error)
@@ -35,6 +47,14 @@ const userSlice = createSlice({
                 return state
             }
         })
+            .addCase(getAllUsers.fulfilled, (state, action) => {
+                if (!action.payload) {
+                    return state
+                } else{
+                    state = [action.payload]
+                }
+                
+            })
     }
 })
 

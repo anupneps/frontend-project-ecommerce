@@ -18,8 +18,8 @@ const Footer = () => {
         <AppBar color='transparent'
             sx={{
                 height: '250px', 
-                position: 'static',
-                bottom:'0',
+                position: 'relative',
+                clear:'both',
                 marginTop:'auto',
                 width: '100%',
                

@@ -9,6 +9,7 @@ import Profile from './pages/Profile';
 import Products from './components/Products';
 import SingleProduct from './pages/SingleProduct';
 import Footer from './pages/Footer';
+import Categories from './components/Categories';
 
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
         <Route path='/' element={<Home />}></Route>
         <Route path='/home' element={<Home />}></Route>
         <Route path='/cart' element={<Cart />}></Route>
+        <Route path='/categories' element={<Categories />}></Route>
         <Route path='/signup' element={<Register />}></Route>
         <Route path='/login' element={<LoginIn />}></Route>
         <Route path='/profile' element={<Profile />}></Route>

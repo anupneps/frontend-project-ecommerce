@@ -1,4 +1,4 @@
-import { TableContainer, Paper,Table, TableHead, TableRow, TableCell, Button, TableBody, Card, CardMedia, CardActions, Box } from '@mui/material'
+import { TableContainer, Paper, Table, TableHead, TableRow, TableCell, Button, TableBody, Card, CardMedia, CardActions, Box } from '@mui/material'
 
 import { AxiosResponse } from 'axios'
 
@@ -13,12 +13,12 @@ import { Product } from '../types/product'
 const SingleProduct = () => {
     const dispatch = useAppDispatch()
     const [singleProduct, setSingleProduct] = useState<Product>()
-    
+
     const { id } = useParams()
 
     useEffect(() => {
         axiosInstance.get(`products/${id}`)
-            .then((response:AxiosResponse<Product, Error>) => {
+            .then((response: AxiosResponse<Product, Error>) => {
                 setSingleProduct(response.data)
             })
     }, [id])
@@ -29,39 +29,36 @@ const SingleProduct = () => {
 
 
     return (
-        // <div>
-        //     <h1>{product.title}</h1>
-        //     <h4>{product.price}</h4>
-        //     <h4>{product.description}</h4>
-        // </div>
         <TableContainer component={Paper}
-           sx={{
+            sx={{
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
                 alignItems: 'center',
                 justifySelf: 'center',
-                width:'100%',
-                position:'relative'
-                
+                width: '100%',
+                position: 'relative'
+
             }}>
 
-            <Box sx={{margin:'5%',
+            <Box sx={{
+                margin: '5%',
                 width: '50%',
-                overflow:'hidden',
-                padding: '20px'}}>
-                <Card sx={{ display:'flex', justifyContent:'space-around', margin: '10px', padding:'5px' }}>
+                overflow: 'hidden',
+                padding: '20px'
+            }}>
+                <Card sx={{ display: 'flex', justifyContent: 'space-around', margin: '10px', padding: '5px' }}>
                     <CardMedia
                         sx={{ height: 400, width: 400 }}
-                    image={singleProduct?.images[1]}
+                        image={singleProduct?.images[1]}
                     />
                     <CardMedia
                         sx={{ height: 400, width: 400 }}
-                    image={singleProduct?.images[2]}
+                        image={singleProduct?.images[2]}
                     />
-                     <CardMedia
+                    <CardMedia
                         sx={{ height: 400, width: 400 }}
-                    image={singleProduct?.images[0]}
+                        image={singleProduct?.images[0]}
                     />
                 </Card>
                 <Table >
@@ -85,7 +82,7 @@ const SingleProduct = () => {
                                 {'Price '}
                             </TableCell>
                             <TableCell>
-                            € {singleProduct?.price}
+                                € {singleProduct?.price}
                             </TableCell>
                         </TableRow>
                         <TableRow>
@@ -97,20 +94,20 @@ const SingleProduct = () => {
                             </TableCell>
                         </TableRow>
                         <TableRow>
-                        <TableCell>
-                            {'Category'}
-                        </TableCell>
-                        <TableCell >
-                            {singleProduct?.category.name}
-                        </TableCell>
-                    </TableRow>
+                            <TableCell>
+                                {'Category'}
+                            </TableCell>
+                            <TableCell >
+                                {singleProduct?.category.name}
+                            </TableCell>
+                        </TableRow>
                     </TableBody>
                 </Table>
                 <CardActions>
-                    {singleProduct?<Button onClick={() => addToCart(singleProduct)} variant='contained'> Add To Cart </Button>:<Button>Add to Cart</Button>}
-                    
+                    {singleProduct ? <Button onClick={() => addToCart(singleProduct)} variant='contained'> Add To Cart </Button> : <Button>Add to Cart</Button>}
+
                 </CardActions>
-                </Box>
+            </Box>
         </TableContainer>
 
     )

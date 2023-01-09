@@ -34,8 +34,8 @@ const Navbar: React.FC = () => {
                 </Typography>
                 <Box mt={2} marginRight={2} sx={{ color: 'red', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     <Link style={link} to="/" >Home</Link>
-                    <Link style={link} to="/" >About</Link>
-                    <Link style={link} to="/" >Categories</Link>
+                    <Link style={link} to="/about" >About</Link>
+                    <Link style={link} to="/categories" >Categories</Link>
                     <Link style={link} to="/cart"><ShoppingCartIcon sx={{ position: 'relative', top: 3, fontSize: '24px' }} />
                         <span style={{
                             position: 'absolute', color: '#ffffff', top: 25, fontSize: '14px', textAlign: 'center',

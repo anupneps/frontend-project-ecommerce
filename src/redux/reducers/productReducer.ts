@@ -22,7 +22,7 @@ export const deleteAproduct = createAsyncThunk(
     'deleteProduct',
     async (product: Product) => {
         try {
-            const jsondata: AxiosResponse<boolean, Error> = await axiosInstance.delete(`products/${product.id}`)
+            const jsondata: AxiosResponse<boolean> = await axiosInstance.delete(`products/${product.id}`)
             return jsondata.data
         } catch (error: any) {
             throw new Error(error.message)
@@ -34,34 +34,7 @@ const productSlice = createSlice({
     name: "productSlice",
     initialState: initialState,
     reducers: {
-        sortByName: (state, action: PayloadAction<'asc' | 'desc'>) => {
-            if (action.payload === 'asc') {
-                state.sort((a, b) => a.title.localeCompare(b.title))
-            } else {
-                state.sort((a, b) => b.title.localeCompare(a.title))
-            }
-        },
-        deleteItem: (state, action: PayloadAction<number>) => {
-            return state.filter(item => item.id !== action.payload)
-        },
-        modifyItem: (state, action: PayloadAction<Product>) => {
-            const foundItem = state.find(item => item.id === action.payload.id)
-            if (foundItem) {
-                return state.map(item => {
-                    if (item.id === action.payload.id) {
-                        item = action.payload
-                    }
-                    return item
-                })
-            } else {
-                throw new Error("Item not found")
-            }
-        },
-        sortByPrice: (state, action: PayloadAction<'asc'>) => {
-            if (action.payload === 'asc') {
-                state.sort((a, b) => (a.price) - (b.price))
-            }
-        }
+       
     },
     extraReducers: (build) => {
         build.addCase(fetchAllProducts.fulfilled, (state, action) => {
@@ -72,17 +45,21 @@ const productSlice = createSlice({
             }
             return action.payload
         })
-        build.addCase(fetchAllProducts.rejected, (state, action) => {
+        .addCase(fetchAllProducts.rejected, (state, action) => {
             return state
         })
-        build.addCase(fetchAllProducts.pending, (state, action) => {
+        .addCase(fetchAllProducts.pending, (state, action) => {
             return state
         })
+        .addCase(deleteAproduct.fulfilled,(state, action)=>{
+            return state
+        })
+        
     }
 })
 
 const productReducer = productSlice.reducer
-export const { sortByName, deleteItem, modifyItem, sortByPrice } = productSlice.actions
+export const {} = productSlice.actions
 export default productReducer
 
 

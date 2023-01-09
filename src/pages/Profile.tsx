@@ -32,10 +32,9 @@ const Profile = () => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 margin: '50px',
-                position: 'absolute',
-                top: '10%',
-                left: '38%',
-                width: 'fit-content'
+                marginLeft:'40%',
+                marginRight:'20%',
+                width: '30vh'
             }} >
             <Avatar alt="random" src={userInfo?.user?.avatar}
                 sx={{ width: '200px', height: '200px', border: '1px solid black', margin: '10px' }} />
@@ -43,7 +42,7 @@ const Profile = () => {
                 <TableHead  >
                     <TableRow  >
                         <TableCell variant='head' sx={{ fontSize: '20px' }}>Profile Summary</TableCell>
-                        <TableCell style={{ border: 'none', position: 'absolute', right: 0 }} variant='head'>
+                        <TableCell style={{ border: 'none' }} variant='head'>
                             <Button variant='contained' color='primary' >Edit</Button>
                         </TableCell>
                     </TableRow>
