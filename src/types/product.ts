@@ -10,3 +10,8 @@ export interface Product {
     quantity?:number
     subTotal?:number
 }
+
+export interface ModifyProduct{
+    id:number
+    update:Partial<Product>
+}

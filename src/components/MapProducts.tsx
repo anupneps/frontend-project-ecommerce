@@ -2,6 +2,7 @@ import { Grid, Card, CardMedia, CardContent, Typography, CardActions, Button, Bo
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Category } from '../types/category'
+import DividerComponent from './Divider'
 
 export interface ProductInterface {
     key?: number
@@ -16,18 +17,17 @@ export interface ProductInterface {
 const MapProducts = (product: ProductInterface) => {
     const cardOnHover = {
         transition: "transform 1s ease ",
-            overflow: 'hidden',
+        overflow: 'hidden',
         ":hover": {
             transform: 'scale(0.95)',
 
         }
     }
-    
 
     return (
         <Grid key={product.key} item xs={6} md={2} sx={cardOnHover} >
-            <Card sx={{ cursor: 'pointer'}}>
-                <Link to ={`/products/${product.id}`} > <CardMedia
+            <Card sx={{ cursor: 'pointer' }}>
+                <Link to={`/products/${product.id}`} > <CardMedia
                     sx={{ height: 200 }}
                     image={product.images[1]}
                 /></Link>
@@ -44,7 +44,7 @@ const MapProducts = (product: ProductInterface) => {
                 <Button onClick={() => addToCart(product)} variant='contained'> Add To Cart </Button>
               </CardActions> */}
             </Card>
-           
+
         </Grid>
     )
 }

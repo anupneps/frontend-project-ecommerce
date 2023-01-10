@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useAppDispatch } from '../hooks/reduxHook'
 import { add } from '../redux/reducers/cartReducer'
+import { deleteAproduct } from '../redux/reducers/productReducer'
 import axiosInstance from '../shared/axiosInstance'
 import { Product } from '../types/product'
 
@@ -26,6 +27,9 @@ const SingleProduct = () => {
     const addToCart = (product: Product) => {
         dispatch(add(product))
     }
+    // const deleteProduct = (id)=>{
+    //     dispatch(deleteAproduct(`products/${id}`))
+    // }
 
 
     return (
@@ -105,7 +109,8 @@ const SingleProduct = () => {
                 </Table>
                 <CardActions>
                     {singleProduct ? <Button onClick={() => addToCart(singleProduct)} variant='contained'> Add To Cart </Button> : <Button>Add to Cart</Button>}
-
+                    {singleProduct ? <Button onClick={() => alert('clicked')} variant='contained'> Edit </Button> : <Button>Edit</Button>}
+                    {singleProduct ? <Button onClick={() => alert(alert(singleProduct))} variant='contained'> Delete </Button> : <Button>Delete</Button>}
                 </CardActions>
             </Box>
         </TableContainer>

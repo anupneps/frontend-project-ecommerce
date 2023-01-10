@@ -2,7 +2,8 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AxiosResponse } from "axios";
 
 import axiosInstance from "../../shared/axiosInstance";
-import { Product } from "../../types/product";
+import { CreateProduct } from "../../types/createProduct";
+import { ModifyProduct, Product } from "../../types/product";
 
 const initialState: Product[] = []
 
@@ -11,6 +12,31 @@ export const fetchAllProducts = createAsyncThunk(
     async () => {
         try {
             const jsondata: AxiosResponse<Product[], Product> = await axiosInstance.get('products')
+            return jsondata.data
+        } catch (error: any) {
+            throw new Error(error.message)
+        }
+    }
+)
+
+export const createProduct = createAsyncThunk(
+    'createProduct',
+    async (product: CreateProduct) => {
+        try {
+            const jsondata: AxiosResponse<Product, any> = await axiosInstance.post('products', product)
+            return jsondata.data
+        } catch (error: any) {
+            throw new Error(error.message)
+        }
+    }
+)
+
+
+export const modifyProduct = createAsyncThunk(
+    'modifyProduct',
+    async ({id, update}: ModifyProduct) => {
+        try {
+            const jsondata: AxiosResponse<Product, any> = await axiosInstance.put(`products/${id}`, update)
             return jsondata.data
         } catch (error: any) {
             throw new Error(error.message)
@@ -34,7 +60,18 @@ const productSlice = createSlice({
     name: "productSlice",
     initialState: initialState,
     reducers: {
-       
+        sortByName: (state, action: PayloadAction<'asc' | 'desc'>) => {
+            if (action.payload === 'asc') {
+                state.sort((a, b) => a.title.localeCompare(b.title))
+            } else {
+                state.sort((a, b) => b.title.localeCompare(a.title))
+            }
+        },
+        sortByPrice: (state, action: PayloadAction<'asc'>) => {
+            if (action.payload === 'asc') {
+                state.sort((a, b) => (a.price) - (b.price))
+            }
+        }
     },
     extraReducers: (build) => {
         build.addCase(fetchAllProducts.fulfilled, (state, action) => {
@@ -45,21 +82,28 @@ const productSlice = createSlice({
             }
             return action.payload
         })
-        .addCase(fetchAllProducts.rejected, (state, action) => {
-            return state
-        })
-        .addCase(fetchAllProducts.pending, (state, action) => {
-            return state
-        })
-        .addCase(deleteAproduct.fulfilled,(state, action)=>{
-            return state
-        })
-        
+            .addCase(fetchAllProducts.rejected, (state, action) => {
+                return state
+            })
+            .addCase(fetchAllProducts.pending, (state, action) => {
+                return state
+            })
+            .addCase(createProduct.fulfilled,(state,action)=>{
+                if(action.payload){
+                    state.push(action.payload)
+                }else{
+                    return state
+                }
+            })
+            .addCase(deleteAproduct.fulfilled, (state, action) => {
+                return state
+            })
+            
     }
 })
 
 const productReducer = productSlice.reducer
-export const {} = productSlice.actions
+export const {sortByName, sortByPrice } = productSlice.actions
 export default productReducer
 
 

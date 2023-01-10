@@ -25,6 +25,7 @@ const Profile = () => {
     }
 
     return (
+       
         <TableContainer component={Paper}
             sx={{
                 display: 'flex',
@@ -33,8 +34,7 @@ const Profile = () => {
                 alignItems: 'center',
                 margin: '50px',
                 marginLeft:'40%',
-                marginRight:'20%',
-                width: '30vh'
+                width: '30vw'
             }} >
             <Avatar alt="random" src={userInfo?.user?.avatar}
                 sx={{ width: '200px', height: '200px', border: '1px solid black', margin: '10px' }} />

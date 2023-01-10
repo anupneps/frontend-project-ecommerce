@@ -50,7 +50,7 @@ const Cart: React.FC = () => {
 
    return (
       <>
-         <Box mb={8} px={4} marginTop='40px' marginBottom='5%' width={'100%'} height={'100%'} >
+         <Box mb={8} px={4} marginTop='40px' marginBottom='5%' width={'100%'} height={'100vh'} >
             <Typography variant='h4'>
                Shopping Cart
             </Typography>

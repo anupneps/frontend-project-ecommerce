@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '../hooks/reduxHook';
 
 const Home = () => {
     return (
-        <Box width={'100%'} height={'auto'}>
+        <Box width={'100%'} height={'150vh'}>
             <Card>
                 <CardMedia
                     sx={{ height: 200, width: '100%', transform: 'translateY(10px)' }}

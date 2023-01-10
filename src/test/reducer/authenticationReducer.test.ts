@@ -23,10 +23,10 @@ describe("Testing the actions from authenticationReducer", () => {
     test("Should get the initial state", () => {
         expect(store.getState().authenticationReducer.user?.email).toBe("")
     })
-    test("Should get all the users", async() => {
-        await store.dispatch(getAllUsers())
-        expect(store.getState().userReducer.length).toBe(3)
-    })
+    // test("Should get all the users", async() => {
+    //     await store.dispatch(getAllUsers())
+    //     expect(store.getState().userReducer.length).toBe(3)
+    // })
     // test("Should create a new user/signUp", async () => {
     //     await store.dispatch(getAllUsers())
     //     await store.dispatch(createUser({

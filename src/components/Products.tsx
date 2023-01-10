@@ -1,13 +1,12 @@
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Divider, Grid, InputAdornment, TextField, Typography } from '@mui/material'
-import { useEffect, useState } from 'react'
+import { Box, Button, Grid, Link } from '@mui/material'
+import { useEffect} from 'react'
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHook'
-import SearchIcon from '@mui/icons-material/Search';
-import FilterAltIcon from '@mui/icons-material/FilterAlt';
 
-import { fetchAllProducts} from '../redux/reducers/productReducer'
+import { createProduct, fetchAllProducts } from '../redux/reducers/productReducer'
 import { Product } from '../types/product';
 import MapProducts from './MapProducts';
 import DividerComponent from './Divider';
+import { CreateProduct } from '../types/createProduct';
 
 const Products = () => {
   const dispatch = useAppDispatch()
@@ -18,7 +17,6 @@ const Products = () => {
   useEffect(() => {
     dispatch(fetchAllProducts())
   }, [dispatch])
-
 
   const renderProduct = (product: Product) => {
     return (
@@ -33,24 +31,30 @@ const Products = () => {
       />
     )
   }
-
+  const boxLayout = {
+    display: 'flex',
+    justifyContent: 'center',
+    border: '1px solid orange',
+    marginTop:'30px',
+    padding: '5px',
+    width: '100%',
+    marginLeft: '1%',
+    marginRight: '1%'
+  }
 
   return (
     <>
-      
       <DividerComponent title={'Featured Products'} />
-      <Grid container spacing={2} width={'auto'} margin={'30px'} marginTop={'10px'} marginBottom={'80px'}  >
+      <Grid container spacing={2} width={'auto'} margin={'30px'} marginTop={'10px'}>
         {featuredProductsList.map(renderProduct)}
+        <Box sx={boxLayout} ><Link href='/categories'><Button>More..</Button></Link></Box>
       </Grid>
       <DividerComponent title={'Recommended Products'} />
-      <Grid container spacing={2} width={'auto'} margin={'30px'} marginTop={'10px'}  >
+      <Grid container spacing={2} width={'auto'} margin={'30px'} marginTop={'10px'}>
         {(recommondedProductsList).map(renderProduct)}
+        <Box sx={boxLayout} > <Link href='/categories'><Button>More..</Button></Link> </Box>
       </Grid>
-      {/* <Grid container spacing={2} width={'auto'} margin={'30px'} marginTop={'10px'}  >
-        {searchProductFn(products).map(renderProduct)}
-      </Grid> */}
-
-    </>
+      </>
   )
 }
 

@@ -6,10 +6,10 @@ import Navbar from './components/Navbar';
 import Register from './components/Register';
 import LoginIn from './components/LoginIn';
 import Profile from './pages/Profile';
-import Products from './components/Products';
 import SingleProduct from './pages/SingleProduct';
 import Footer from './pages/Footer';
 import Categories from './components/Categories';
+import Admin from './pages/Admin';
 
 
 const App = () => {
@@ -30,6 +30,7 @@ const App = () => {
         <Route path='/signup' element={<Register />}></Route>
         <Route path='/login' element={<LoginIn />}></Route>
         <Route path='/profile' element={<Profile />}></Route>
+        <Route path='/admin' element={<Admin />}></Route>
         <Route path="/products/:id" element={<SingleProduct />}></Route>
       </Routes>
       <Footer />
