@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { createStore, } from './redux/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import ToggleColorMode from './components/ChangeTheme';
 
 const store = createStore()
 const container = document.getElementById('root')!;
@@ -13,7 +14,9 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <Provider store={store}>
+      <ToggleColorMode>
       <App />
+      </ToggleColorMode>
     </Provider>
   </React.StrictMode>
 );

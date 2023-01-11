@@ -1,12 +1,10 @@
-import { Box, CardMedia, Typography } from '@mui/material';
+import { Box, CardMedia } from '@mui/material';
 import Card from '@mui/material/Card';
 import Products from '../components/Products';
-import { useAppDispatch, useAppSelector } from '../hooks/reduxHook';
-
 
 const Home = () => {
     return (
-        <Box width={'100%'} height={'150vh'}>
+        <Box width={'100%'} minHeight={'150vh'}>
             <Card>
                 <CardMedia
                     sx={{ height: 200, width: '100%', transform: 'translateY(10px)' }}

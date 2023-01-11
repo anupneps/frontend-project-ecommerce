@@ -1,5 +1,5 @@
-import { Divider, Typography } from '@mui/material'
-import React from 'react'
+import { Typography } from '@mui/material'
+
 
 export interface DividerProps {
     title?: string|undefined
@@ -7,10 +7,7 @@ export interface DividerProps {
 
 const DividerComponent = ({ title }: DividerProps) => {
     return (
-        <>
             <Typography variant='h5' fontWeight={'bold'} marginLeft={'45px'} marginTop={'30px'}>{title}</Typography>
-           
-        </>
     )
 }
 

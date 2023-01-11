@@ -1,10 +1,8 @@
-import { AsyncThunk, createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { AxiosResponse } from 'axios'
-import axiosInstance from '../../shared/axiosInstance'
-import { Category } from '../../types/category'
-import { Product } from '../../types/product'
-import { RootState } from '../store'
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
+import {AxiosResponse} from 'axios'
 
+import axiosInstance from '../../shared/axiosInstance'
+import {Category} from '../../types/category'
 
 export const fetchAllCategories= createAsyncThunk(
     'fetchAllCategories',
@@ -18,13 +16,6 @@ export const fetchAllCategories= createAsyncThunk(
         }
     }
 )
-
-
-// let initialState: Category= {
-//     id:null,
-//     name:'',
-//     image:''
-// }
 
 const initialState:Category[]=[]
 
@@ -47,5 +38,4 @@ const categorySlice = createSlice({
 })
 
 const categoryReducers = categorySlice.reducer
-export const {  } = categorySlice.actions
 export default categoryReducers

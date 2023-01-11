@@ -6,8 +6,10 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHook'
+
 import { logout } from '../redux/reducers/authenticationReducer'
 import { emptyCart } from '../redux/reducers/cartReducer'
+
 
 const Profile = () => {
     const dispatch = useAppDispatch()
@@ -25,7 +27,6 @@ const Profile = () => {
     }
 
     return (
-       
         <TableContainer component={Paper}
             sx={{
                 display: 'flex',
@@ -33,7 +34,7 @@ const Profile = () => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 margin: '50px',
-                marginLeft:'40%',
+                marginLeft: '40%',
                 width: '30vw'
             }} >
             <Avatar alt="random" src={userInfo?.user?.avatar}

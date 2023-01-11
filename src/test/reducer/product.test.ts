@@ -1,8 +1,9 @@
-import { createProduct, deleteAproduct,fetchAllProducts, sortByName, sortByPrice } from "../../redux/reducers/productReducer"
+import { createProduct, deleteAproduct,fetchAllProducts, modifyProduct, sortByName, sortByPrice } from "../../redux/reducers/productReducer"
 import { createStore } from "../../redux/store"
 import { CreateProduct } from "../../types/createProduct"
 import { StoreInterface } from "../../types/StoreInterface"
 import server from "../shared/server"
+import { testProductData } from "../test-data/productTestData"
 
 let store: StoreInterface
 
@@ -47,6 +48,19 @@ describe("Testing actions from product reducer", () => {
         }
         await store.dispatch(createProduct(newProduct))
         expect(store.getState().productReducer.length).toBe(0)
+    })
+    test("Should update available product",async () => {
+        await store.dispatch(fetchAllProducts())
+        await store.dispatch(modifyProduct({
+            id:11,
+            update:{
+                price: 200,
+                title:'Testing the modify function'
+            }
+        }))
+       
+        expect(store.getState().productReducer.find(product => product.id === 11)?.price).toEqual(200)
+        expect(store.getState().productReducer.find(product => product.id === 11)?.title).toBe('Testing the modify function')
     })
     test("Should sort the products in ascending/descending order", async () => {
         await store.dispatch(fetchAllProducts())

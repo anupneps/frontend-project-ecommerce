@@ -31,10 +31,9 @@ export const createProduct = createAsyncThunk(
     }
 )
 
-
 export const modifyProduct = createAsyncThunk(
     'modifyProduct',
-    async ({id, update}: ModifyProduct) => {
+    async ({ id, update }: ModifyProduct) => {
         try {
             const jsondata: AxiosResponse<Product, any> = await axiosInstance.put(`products/${id}`, update)
             return jsondata.data
@@ -46,9 +45,9 @@ export const modifyProduct = createAsyncThunk(
 
 export const deleteAproduct = createAsyncThunk(
     'deleteProduct',
-    async (product: Product) => {
+    async (id: number) => {
         try {
-            const jsondata: AxiosResponse<boolean> = await axiosInstance.delete(`products/${product.id}`)
+            const jsondata: AxiosResponse<boolean> = await axiosInstance.delete(`products/${id}`)
             return jsondata.data
         } catch (error: any) {
             throw new Error(error.message)
@@ -88,22 +87,32 @@ const productSlice = createSlice({
             .addCase(fetchAllProducts.pending, (state, action) => {
                 return state
             })
-            .addCase(createProduct.fulfilled,(state,action)=>{
-                if(action.payload){
+            .addCase(createProduct.fulfilled, (state, action) => {
+                if (action.payload) {
                     state.push(action.payload)
-                }else{
+                } else {
                     return state
                 }
             })
             .addCase(deleteAproduct.fulfilled, (state, action) => {
-                return state
+                if (action.payload === true) {
+                    return state
+                }
+                return { ...state }
             })
-            
+            .addCase(modifyProduct.fulfilled, (state, action) => {
+                return state.map((product) => {
+                    if (product.id === action.payload.id) {
+                        return action.payload
+                    }
+                    return product
+                })
+            })
     }
 })
 
 const productReducer = productSlice.reducer
-export const {sortByName, sortByPrice } = productSlice.actions
+export const { sortByName, sortByPrice } = productSlice.actions
 export default productReducer
 
 

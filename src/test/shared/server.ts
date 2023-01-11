@@ -5,7 +5,6 @@ import { Product } from "../../types/product"
 import { testProductData } from "../test-data/productTestData"
 import { users } from "../test-data/usersTestData"
 
-
 const handler = [
     rest.get("https://api.escuelajs.co/api/v1/products", (req, res, ctx) => {
         return res(
@@ -22,14 +21,33 @@ const handler = [
         return res(
             ctx.json(product)
         )
-
     }),
-    rest.delete(`https://api.escuelajs.co/api/v1/products/:id`, async (req, res, ctx) => {
-        const { id } = req.params as any;
-        // testProductData.filter((index => index.id !== parseInt(id)))
-        return res(ctx.json(testProductData.filter((index => index.id !== parseInt(id)))));
-
+    rest.put("https://api.escuelajs.co/api/v1/products/:id", async (req, res, ctx) => {
+        const update: Partial<Product> = await req.json()
+        const { id } = req.params as any
+        const foundProduct = testProductData.find((product => product.id === parseInt(id)))
+        if (foundProduct) {
+            return res(
+                ctx.json({ ...foundProduct, ...update })
+            )
+        } else {
+            return res(
+                ctx.status(404, 'Product is not found')
+            )
+        }
     }),
+    // rest.delete(`https://api.escuelajs.co/api/v1/products/:id`, async (req, res, ctx) => {
+    //     // const productToDelete: Product = await req.json()
+    //     // const { id } = req.params as any;
+    //     const foundProduct = testProductData.find(product => product.id !== parseInt(id))
+    //     if (foundProduct) {
+    //         return res(ctx.json(testProductData.filter((product => product.id !== parseInt(id)))));
+    //     } else {
+    //         return res(
+    //             ctx.status(401, 'Bad request')
+    //         )
+    //     }
+    // }),
     rest.get("https://api.escuelajs.co/api/v1/users", (req, res, ctx) => {
         return res(
             ctx.json(users)

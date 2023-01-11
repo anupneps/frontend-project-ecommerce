@@ -10,7 +10,7 @@ import { Product } from '../types/product';
 const Cart: React.FC = () => {
    let navigate = useNavigate();
    const routeChange = () => {
-      navigate('/home');
+      navigate('/');
    }
 
    const [total, setTotal] = useState<number>(0)
@@ -28,15 +28,6 @@ const Cart: React.FC = () => {
    const handleMinusCounter = (productId: Product) => {
       dispatch(decrement(productId))
    }
-
-
-   // const totalSum = cartItems.cart.reduce((acc, cur) => {
-   //    let sum = 0
-   //    if (cur.subTotal) {
-   //       sum = acc + cur.subTotal
-   //    }
-   //    return sum
-   // }, 0)
 
    useEffect(() => {
       setTotal(cartItems.cart.reduce((acc, cur) => {

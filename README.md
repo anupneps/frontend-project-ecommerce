@@ -1,29 +1,35 @@
-# Front-end Project
+# Front-end E-commerce Project
 
 ![React](https://img.shields.io/badge/React-v.18-blue)
 ![Redux toolkit](https://img.shields.io/badge/Redux-v.1.9-purple)
 ![TypeScript](https://img.shields.io/badge/TypeScript-v.4.9-green)
-![SASS](https://img.shields.io/badge/SASS-v.4.9-hotpink)
 
-This project requires implementation of TypeScript and SASS.
+## Demo
 
-## Requirement
 
-1. Use the API endpoint [https://fakeapi.platzi.com/](https://fakeapi.platzi.com/) to create an e-commerce website. Read the documentation and learn how to use the different endpoints.
-2. Create at lease 4 pages (can be more if you want): Home page, product page,
-profile page (only available if user logins), and cart page (cart could be a page or a modal)
-3. Create Redux store for following features:
-    - product reducer: get all products, find a single products, sort products by
-    categories, sort products by price. Create, update and delete a product (enable update & delete features only for admin of the webapp. For example, you can check if user is your admin account before let them delete product)
-    - user reducer: Register and Login
-    - cart reducer: add product to cart, remove products, update products's quantity in cart
-4. When adding routers to your application, programatically set certain routes to be private. For example, route to user profile page should not be accessible if user has not logged in.
-5. Deploy the application and rewrite README file.
+## Introduction 
+This is a frontend project where an e-commerce web application has been developed using react, redux-toolkit, typescript. For this project, the following API endpoint has been used :
+[https://fakeapi.platzi.com/](https://fakeapi.platzi.com/) 
 
-## Bonus
+## Features Implemented 
+1. Public Pages : Homepage, Categories, Cart, Login/SignUp
+2. Private Pages : Profile and Admin
+    - Profile page only visible by the loged in user 
+    - Admin tab appears once admin has log in 
+3. Search products from input bar and filter products by price and ascending order with buttons in categories page
+4. Search products from different categories in categories page
+5. Able to signup and login to the webpage until you refresh the page
+6. All the cart functionality can be performed (add, remove, increase/decrease quantity)
+7. Once you click on product image, it will redirect to single product page and and it has addToCart button for everyone and  Edit and Delete buttons for admins. 
+8. Theme change has been implemented (MUI example)
+9. Unit test has been done for cart. product and authentication (inprogress)
 
-1. Use context API to switch theme
-2. Implement unit testing for the reducers
+## Things to do
+1. Need to do UI for create/modify/delete products, unit test done except for delete and upload images.
+2. Need to Implement validation in forms and error handeling 
+3. Need to implement local storage for cart and user session
+4. I want to do pagination to display all the products
+5. May be more styling if time allows 
 
 ## Instruction to start the project
 

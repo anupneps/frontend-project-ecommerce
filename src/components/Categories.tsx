@@ -1,4 +1,4 @@
-import { Box, TextField, InputAdornment, Button, Grid, Typography } from '@mui/material'
+import { Box, TextField, InputAdornment, Button, Grid} from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHook'
 import SearchIcon from '@mui/icons-material/Search';
@@ -119,7 +119,7 @@ const Categories = () => {
             </Box>
             <DividerComponent title={catergoryTitle} />
             <Grid container spacing={2} width={'auto'} margin={'30px'} marginTop={'10px'}  >
-                {renderDisplay ? categoryDisplay.map(renderProduct) : searchProductFn(products).map(renderProduct)}
+                {renderDisplay ? searchProductFn(categoryDisplay).map(renderProduct) : searchProductFn(products).map(renderProduct)}
             </Grid>
         </>
     )

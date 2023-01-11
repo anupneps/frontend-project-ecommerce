@@ -1,21 +1,23 @@
 import { TableContainer, Paper, Table, TableHead, TableRow, TableCell, Button, TableBody, Card, CardMedia, CardActions, Box } from '@mui/material'
-
 import { AxiosResponse } from 'axios'
+import { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useAppDispatch, useAppSelector } from '../hooks/reduxHook'
 
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { useAppDispatch } from '../hooks/reduxHook'
 import { add } from '../redux/reducers/cartReducer'
-import { deleteAproduct } from '../redux/reducers/productReducer'
+// import { deleteAproduct } from '../redux/reducers/productReducer'
 import axiosInstance from '../shared/axiosInstance'
 import { Product } from '../types/product'
 
-
 const SingleProduct = () => {
     const dispatch = useAppDispatch()
+    const userAuthentication = useAppSelector(state => state.authenticationReducer)
     const [singleProduct, setSingleProduct] = useState<Product>()
-
     const { id } = useParams()
+    const navigate = useNavigate()
+    const reRoute = () => {
+        navigate('/')
+    }
 
     useEffect(() => {
         axiosInstance.get(`products/${id}`)
@@ -31,7 +33,6 @@ const SingleProduct = () => {
     //     dispatch(deleteAproduct(`products/${id}`))
     // }
 
-
     return (
         <TableContainer component={Paper}
             sx={{
@@ -42,7 +43,6 @@ const SingleProduct = () => {
                 justifySelf: 'center',
                 width: '100%',
                 position: 'relative'
-
             }}>
 
             <Box sx={{
@@ -51,6 +51,7 @@ const SingleProduct = () => {
                 overflow: 'hidden',
                 padding: '20px'
             }}>
+                {singleProduct ? <Button onClick={() => (reRoute())} variant='contained'> Back </Button> : <Button></Button>}
                 <Card sx={{ display: 'flex', justifyContent: 'space-around', margin: '10px', padding: '5px' }}>
                     <CardMedia
                         sx={{ height: 400, width: 400 }}
@@ -109,8 +110,8 @@ const SingleProduct = () => {
                 </Table>
                 <CardActions>
                     {singleProduct ? <Button onClick={() => addToCart(singleProduct)} variant='contained'> Add To Cart </Button> : <Button>Add to Cart</Button>}
-                    {singleProduct ? <Button onClick={() => alert('clicked')} variant='contained'> Edit </Button> : <Button>Edit</Button>}
-                    {singleProduct ? <Button onClick={() => alert(alert(singleProduct))} variant='contained'> Delete </Button> : <Button>Delete</Button>}
+                    {singleProduct && userAuthentication.isAuthenticated && userAuthentication.user?.role === 'admin' ? <Button onClick={() => alert('clicked')} variant='contained'> Edit </Button> : ''}
+                    {singleProduct && userAuthentication.isAuthenticated && userAuthentication.user?.role === 'admin' ? <Button onClick={() => alert(alert(singleProduct))} variant='contained'> Delete </Button> : ''}
                 </CardActions>
             </Box>
         </TableContainer>
