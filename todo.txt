@@ -1,8 +1,0 @@
-write unit test 
-enable protected routing 
-admin page for updating products
-form validation 
-more styling 
-
-
-https://www.freecodecamp.org/news/search-and-filter-component-in-reactjs/

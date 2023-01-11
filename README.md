@@ -5,7 +5,7 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-v.4.9-green)
 
 ## Demo
-
+https://hilarious-pasca-58c602.netlify.app/
 
 ## Introduction 
 This is a frontend project where an e-commerce web application has been developed using react, redux-toolkit, typescript. For this project, the following API endpoint has been used :

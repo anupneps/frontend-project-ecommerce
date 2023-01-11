@@ -9,6 +9,7 @@ import MapProducts from './MapProducts'
 import { fetchAllProducts, sortByName, sortByPrice } from '../redux/reducers/productReducer';
 import DividerComponent from './Divider'
 import { fetchAllCategories } from '../redux/reducers/categoryReducers';
+import { useNavigate } from 'react-router-dom';
 
 const Categories = () => {
     const dispatch = useAppDispatch()
@@ -19,7 +20,8 @@ const Categories = () => {
     const [categoryDisplay, setcategoryDisplay] = useState<Product[]>([])
     const [renderDisplay, setRenderDisplay] = useState(false)
     const [catergoryTitle, setCategoryTitle] = useState('All Products')
-
+    const navigate = useNavigate()
+    
     const sortName = () => {
         dispatch(sortByName('asc'))
     }
@@ -84,7 +86,7 @@ const Categories = () => {
     }
 
     const getAllProducts = () => {
-        window.location.reload()
+        navigate('/categories')
     }
 
     return (
