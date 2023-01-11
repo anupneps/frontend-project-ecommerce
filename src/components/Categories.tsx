@@ -86,7 +86,7 @@ const Categories = () => {
     }
 
     const getAllProducts = () => {
-        navigate('/categories')
+        dispatch(fetchAllProducts())
     }
 
     return (
