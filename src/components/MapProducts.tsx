@@ -1,8 +1,7 @@
-import { Grid, Card, CardMedia, CardContent, Typography, CardActions, Button, Box } from '@mui/material'
+import { Grid, Card, CardMedia, CardContent, Typography} from '@mui/material'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Category } from '../types/category'
-import DividerComponent from './Divider'
 
 export interface ProductInterface {
     key?: number

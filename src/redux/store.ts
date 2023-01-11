@@ -4,7 +4,6 @@ import cartReducer from './reducers/cartReducer';
 import productReducer from './reducers/productReducer';
 import userReducer from './reducers/userReduer';
 import categoryReducers from './reducers/categoryReducers'
-// import userReducer from './reducers/userReduer';
 
 export const createStore = () => {
   return configureStore({
@@ -17,7 +16,6 @@ export const createStore = () => {
     },
   });
 }
-
 
 const store = createStore()
 export type AppDispatch = typeof store.dispatch;

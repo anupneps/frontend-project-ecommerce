@@ -2,11 +2,11 @@ import { Box, Button, Grid, Link } from '@mui/material'
 import { useEffect} from 'react'
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHook'
 
-import { createProduct, fetchAllProducts } from '../redux/reducers/productReducer'
+import {fetchAllProducts } from '../redux/reducers/productReducer'
 import { Product } from '../types/product';
 import MapProducts from './MapProducts';
 import DividerComponent from './Divider';
-import { CreateProduct } from '../types/createProduct';
+
 
 const Products = () => {
   const dispatch = useAppDispatch()
