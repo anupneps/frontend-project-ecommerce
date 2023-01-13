@@ -18,7 +18,7 @@ const link = {
 
 const Navbar: React.FC = () => {
     const userInfo = useAppSelector(state => state.authenticationReducer)
-    const cartItem = useAppSelector(state => state.cartReducer)
+    const cartItem = useAppSelector(state => state.cartReducer.cart)
     let navigate = useNavigate();
     const routeChange = () => {
         navigate('/');
@@ -65,8 +65,8 @@ const Navbar: React.FC = () => {
                         <span style={{
                             position: 'absolute', color: '#ffffff', top: 25, fontSize: '14px', textAlign: 'center',
                             borderRadius: '50%', paddingLeft: '2px', paddingRight: '2px', width: '20px', backgroundColor: 'black',
-                            visibility: cartItem.cart.length !== 0 ? 'visible' : 'hidden'
-                        }}>{cartItem.cart.length}</span></Link>
+                            visibility: cartItem.length !== 0 ? 'visible' : 'hidden'
+                        }}>{cartItem.length}</span></Link>
                     {userInfo.isAuthenticated ? <Link style={link} to="/profile" ><Avatar alt="User Profile" src={userInfo?.user?.avatar} /></Link> :
                         <Link style={link} to="/login" ><Avatar alt="User Profile" src={userInfo?.user?.avatar} />
                             <Typography variant='body2' fontWeight={'bold'} >Login</Typography></Link>

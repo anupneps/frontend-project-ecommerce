@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction} from '@reduxjs/toolkit'
 import { Product } from '../../types/product'
 
-interface CartState {
+export interface CartState {
     cart:Product[]
 }
 
@@ -21,6 +21,8 @@ const cartSlice = createSlice({
                return
             }
              state.cart.push({...action.payload, quantity:1, subTotal:action.payload.price})
+            //  const cart = JSON.stringify(state)
+            //  localStorage.setItem('cart', cart)
         },
         remove (state:CartState, action:PayloadAction<Product>) {
         state.cart = state.cart.filter(product => product.id!== action.payload.id)
