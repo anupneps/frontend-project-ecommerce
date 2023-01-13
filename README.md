@@ -32,6 +32,7 @@ This is a frontend project where an e-commerce web application has been develope
 5. May be more styling if time allows 
 
 ## Project Structure 
+```
  App.tsx
 │   index.tsx
 │   react-app-env.d.ts
@@ -98,7 +99,7 @@ This is a frontend project where an e-commerce web application has been develope
         product.ts
         StoreInterface.ts
         users.ts
-
+```
 ## Instruction to start the project
 
 In the project directory, you can run:
