@@ -19,7 +19,6 @@ const MapProducts = (product: ProductInterface) => {
         overflow: 'hidden',
         ":hover": {
             transform: 'scale(0.95)',
-
         }
     }
 

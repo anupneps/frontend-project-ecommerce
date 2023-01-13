@@ -2,12 +2,13 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 
-import { createStore, } from './redux/store';
+import {saveState, store, } from './redux/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import ToggleColorMode from './components/ChangeTheme';
 
-const store = createStore()
+
+store.subscribe(() => saveState(store.getState()))
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 

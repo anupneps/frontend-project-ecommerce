@@ -3,16 +3,20 @@ import { AxiosResponse } from 'axios'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHook'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 import { add } from '../redux/reducers/cartReducer'
 // import { deleteAproduct } from '../redux/reducers/productReducer'
 import axiosInstance from '../shared/axiosInstance'
 import { Product } from '../types/product'
 
+
 const SingleProduct = () => {
     const dispatch = useAppDispatch()
     const userAuthentication = useAppSelector(state => state.authenticationReducer)
     const [singleProduct, setSingleProduct] = useState<Product>()
+    // const {isEditing, setIsEditing}=useState(false)
+   
     const { id } = useParams()
     const navigate = useNavigate()
     const reRoute = () => {
@@ -31,6 +35,9 @@ const SingleProduct = () => {
     }
     // const deleteProduct = (id)=>{
     //     dispatch(deleteAproduct(`products/${id}`))
+    // }
+    // const editProduct=(product)=>{
+
     // }
 
     return (
@@ -51,7 +58,7 @@ const SingleProduct = () => {
                 overflow: 'hidden',
                 padding: '20px'
             }}>
-                {singleProduct ? <Button onClick={() => (reRoute())} variant='contained'> Back </Button> : <Button></Button>}
+                {singleProduct ? <Button onClick={() => (reRoute())} sx={{color:'#1a5db6'}} variant='text'> <ArrowBackIcon /> </Button> : <Button></Button>}
                 <Card sx={{ display: 'flex', justifyContent: 'space-around', margin: '10px', padding: '5px' }}>
                     <CardMedia
                         sx={{ height: 400, width: 400 }}
@@ -109,9 +116,9 @@ const SingleProduct = () => {
                     </TableBody>
                 </Table>
                 <CardActions>
-                    {singleProduct ? <Button onClick={() => addToCart(singleProduct)} variant='contained'> Add To Cart </Button> : <Button>Add to Cart</Button>}
-                    {singleProduct && userAuthentication.isAuthenticated && userAuthentication.user?.role === 'admin' ? <Button onClick={() => alert('clicked')} variant='contained'> Edit </Button> : ''}
-                    {singleProduct && userAuthentication.isAuthenticated && userAuthentication.user?.role === 'admin' ? <Button onClick={() => alert(alert(singleProduct))} variant='contained'> Delete </Button> : ''}
+                    {singleProduct ? <Button onClick={() => addToCart(singleProduct)} sx={{bgcolor:'#FFC108'}} variant='contained'> Add To Cart </Button> : <Button>Add to Cart</Button>}
+                    {singleProduct && userAuthentication.isAuthenticated && userAuthentication.user?.role === 'admin' ? <Button sx={{bgcolor:'#FFC108'}} variant='contained'> Edit </Button> : ''}
+                    {singleProduct && userAuthentication.isAuthenticated && userAuthentication.user?.role === 'admin' ? <Button onClick={() => alert(alert(singleProduct))} sx={{bgcolor:'#FFC108'}} variant='contained'> Delete </Button> : ''}
                 </CardActions>
             </Box>
         </TableContainer>

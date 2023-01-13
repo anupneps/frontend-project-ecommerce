@@ -4,7 +4,7 @@ import Products from '../components/Products';
 
 const Home = () => {
     return (
-        <Box width={'100%'} minHeight={'150vh'}>
+        <Box width={'100%'}  minHeight={'150vh'}>
             <Card>
                 <CardMedia
                     sx={{ height: 200, width: '100%', transform: 'translateY(10px)' }}

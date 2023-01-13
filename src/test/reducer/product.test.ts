@@ -54,12 +54,12 @@ describe("Testing actions from product reducer", () => {
         await store.dispatch(modifyProduct({
             id:11,
             update:{
-                price: 200,
+                price: 600,
                 title:'Testing the modify function'
             }
         }))
        
-        expect(store.getState().productReducer.find(product => product.id === 11)?.price).toEqual(200)
+        expect(store.getState().productReducer.find(product => product.id === 11)?.price).toEqual(600)
         expect(store.getState().productReducer.find(product => product.id === 11)?.title).toBe('Testing the modify function')
     })
     test("Should sort the products in ascending/descending order", async () => {
@@ -76,11 +76,11 @@ describe("Testing actions from product reducer", () => {
         expect(store.getState().productReducer[1].price).toBe(317)
         expect(store.getState().productReducer[2].price).toBe(553)
     })
-    // test("Should delete a product from server", async()=>{
-    //     await store.dispatch(fetchAllProducts())
-    //     await store.dispatch(deleteAproduct(testProductData[1]))
-    //     expect(store.getState().productReducer[1].id).toBe(11)
-    // })
+    test("Should delete a product from server", async()=>{
+        await store.dispatch(fetchAllProducts())
+        await store.dispatch(deleteAproduct(testProductData[1].id))
+        expect(store.getState().productReducer[1].id).toBe(11)
+    })
 
 })
 

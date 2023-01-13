@@ -1,12 +1,12 @@
-import { Link, Stack } from '@mui/material'
+import {Checkbox, FormControlLabel, Stack, TextField } from '@mui/material'
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
-import OutlinedInput from '@mui/material/OutlinedInput'
 import Typography from '@mui/material/Typography'
 import { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHook'
 import { Divider } from '@mui/material';
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+
 
 import { autheticateUser } from '../redux/reducers/authenticationReducer'
 
@@ -49,11 +49,13 @@ const Login = () => {
                 <Typography align='center' variant='h4' >LOG IN  </Typography>
                 {/* <Typography>{userAuth.isError ? '' : 'Login Failed'}</Typography>  */}
                 {/* <Typography>{loginStatus}</Typography> */}
-                <OutlinedInput placeholder='Email Address' type='email' value={email} required onChange={(e) => setEmail(e.target.value)} ></OutlinedInput>
-                <OutlinedInput placeholder='Password' type='password' value={password} required onChange={(e) => setPassword(e.target.value)} ></OutlinedInput>
-                <Button onClick={(e) => loginHandle(e)} color='success'>Login</Button>
+                <TextField variant='outlined' label='E-mail'  placeholder='Email Address' type='email' value={email} required onChange={(e) => setEmail(e.target.value)} ></TextField>
+                <TextField variant='outlined' label='Password' placeholder='Password' type='password' value={password} required onChange={(e) => setPassword(e.target.value)} ></TextField>
+                <FormControlLabel control={<Checkbox defaultChecked color='success' />} label="Remember Me" />
+                <Button onClick={(e) => loginHandle(e)} sx={{bgcolor:'#FFC108'}} variant='contained'>Login</Button>
+                <Typography variant='body2' >Forgot Password?<Link to='/signup'> Click here</Link></Typography>
                 <Divider />
-                <Typography variant='body2' >Not registered? <Link href='/signup' variant='body2'>Sign-Up</Link></Typography>
+                <Typography variant='body2' >Not registered? <Link to='/signup'>Sign-Up</Link></Typography>
             </Stack>
         </Grid>
     )

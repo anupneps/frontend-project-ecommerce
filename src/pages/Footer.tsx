@@ -4,6 +4,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
+
 const Footer = () => {
     const theme = useTheme();
     const link = {
@@ -11,12 +12,12 @@ const Footer = () => {
         fontSize: "16px",
         marginLeft: '20px',
         fontWeight: 'bold',
-        color: '#ffffff'
+        color: '#ffffff',      
     }
-
+        
     let bgColour: string
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    theme.palette.mode === 'light' ? bgColour = '#1a5db6' : bgColour = '#ffffff'
+    theme.palette.mode === 'light' ? bgColour = '#DFE0DF' : bgColour = '#ffffff'
     return (
         <AppBar
             sx={{
@@ -30,9 +31,9 @@ const Footer = () => {
 
             }} >
 
-            <Toolbar sx={{ display: 'flex', flexDirection: 'column', alignContent: 'center' }}>
+            <Toolbar sx={{ display: 'flex', flexDirection: 'column', alignContent: 'center'}}>
                 <Box display={'flex'} justifyContent={'space-between'} width={'100%'}>
-                    <Box mt={2} marginRight={2} display={'flex'} justifyContent='space-between' >
+                    <Box mt={2} marginRight={2} display={'flex'} justifyContent='space-between' marginTop={'50px'} >
                         <Link style={link} href="/" >Home</Link>
                         <Link style={link} href="/about" >About</Link>
                         <Link style={link} href="/categories" >Categories</Link>
@@ -50,7 +51,7 @@ const Footer = () => {
                             <Typography variant='body2' fontWeight={'bold'}>2023</Typography>
                         </Box>
                     </Box>
-                    <Box marginTop={'10px'} display={'flex'} justifyContent='space-between'>
+                    <Box marginTop={'50px'} display={'flex'} justifyContent='space-between' >
                         <Link style={link} href="https://www.facebook.com/" ><FacebookIcon /></Link>
                         <Link style={link} href=''><TwitterIcon /></Link>
                         <Link style={link} href=''><InstagramIcon /></Link>

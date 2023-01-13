@@ -21,6 +21,8 @@ const initialState: AuthState = {
     }
 }
 
+
+
 export const createUser = createAsyncThunk(
     "createUser",
     async (user: Users) => {
@@ -33,16 +35,23 @@ export const createUser = createAsyncThunk(
     }
 )
 
+const userTokenFromLocalStorage = localStorage.getItem("token")
+const userToken = userTokenFromLocalStorage? JSON.parse(userTokenFromLocalStorage):''
+console.log(userToken.access_token)
+
 export const autheticateUser = createAsyncThunk(
     "authenticateUser",
     async (user: Users) => {
         try {
             const response: AxiosResponse<Users, Users> = await axiosInstance.post("auth/login", user)
             console.log("Login Successful")
+           
+            localStorage.setItem("token", JSON.stringify(response.data))
             const sessionInfo = await axiosInstance.get('auth/profile',
                 {
                     headers:
-                        { Authorization: `Bearer ${response.data.access_token}` }
+                        // { Authorization: `Bearer ${response.data.access_token}` }
+                        { Authorization: `Bearer ${userToken.access_token}` }
                 })
             return (response.data.access_token, sessionInfo.data)
         } catch (error) {

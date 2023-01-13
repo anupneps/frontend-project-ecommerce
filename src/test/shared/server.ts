@@ -36,18 +36,20 @@ const handler = [
             )
         }
     }),
-    // rest.delete(`https://api.escuelajs.co/api/v1/products/:id`, async (req, res, ctx) => {
-    //     // const productToDelete: Product = await req.json()
-    //     // const { id } = req.params as any;
-    //     const foundProduct = testProductData.find(product => product.id !== parseInt(id))
-    //     if (foundProduct) {
-    //         return res(ctx.json(testProductData.filter((product => product.id !== parseInt(id)))));
-    //     } else {
-    //         return res(
-    //             ctx.status(401, 'Bad request')
-    //         )
-    //     }
-    // }),
+    rest.delete(`https://api.escuelajs.co/api/v1/products/:id`, async (req, res, ctx) => {
+        // const productToDelete: Product = await req.json()
+        // const { id } = req.params as any;
+        const id = await req.json()
+        const foundProductIndex = testProductData.findIndex(product => product.id !== parseInt(id))
+        if (foundProductIndex>-1) {
+            testProductData.splice(foundProductIndex,1)
+            return res(ctx.json({success: true}));
+        } else {
+            return res(
+                ctx.status(401, 'Bad request')
+            )
+        }
+    }),
     rest.get("https://api.escuelajs.co/api/v1/users", (req, res, ctx) => {
         return res(
             ctx.json(users)

@@ -1,11 +1,13 @@
-import { Box, Button, Grid, Link } from '@mui/material'
-import { useEffect} from 'react'
+import { Box, Fab, Grid } from '@mui/material'
+import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHook'
+import AddTwoToneIcon from '@mui/icons-material/AddTwoTone';
 
-import {fetchAllProducts } from '../redux/reducers/productReducer'
+import { fetchAllProducts } from '../redux/reducers/productReducer'
 import { Product } from '../types/product';
 import MapProducts from './MapProducts';
 import DividerComponent from './Divider';
+import { Link } from 'react-router-dom'
 
 
 const Products = () => {
@@ -34,12 +36,18 @@ const Products = () => {
   const boxLayout = {
     display: 'flex',
     justifyContent: 'center',
-    border: '1px solid orange',
-    marginTop:'30px',
+    justifySelf:'flex-end',
+    marginTop: '30px',
     padding: '5px',
     width: '100%',
-    marginLeft: '1%',
-    marginRight: '1%'
+   
+   
+  }
+  const hover ={
+ backgroundColor: '#A88D5C',
+    ":hover": {
+      backgroundColor: '#FFC108'
+    }
   }
 
   return (
@@ -47,14 +55,20 @@ const Products = () => {
       <DividerComponent title={'Featured Products'} />
       <Grid container spacing={2} width={'auto'} margin={'30px'} marginTop={'10px'}>
         {featuredProductsList.map(renderProduct)}
-        <Box sx={boxLayout} ><Link href='/categories'><Button>More..</Button></Link></Box>
+        <Box sx={boxLayout} > <Link to='/categories'><Fab sx={hover} color="primary" aria-label="More">
+          <AddTwoToneIcon />
+        </Fab></Link> </Box>
+        
+        
       </Grid>
       <DividerComponent title={'Recommended Products'} />
       <Grid container spacing={2} width={'auto'} margin={'30px'} marginTop={'10px'}>
         {(recommondedProductsList).map(renderProduct)}
-        <Box sx={boxLayout} > <Link href='/categories'><Button>More..</Button></Link> </Box>
+        <Box sx={boxLayout} > <Link to='/categories'><Fab sx={hover} color="primary" aria-label="More">
+          <AddTwoToneIcon />
+        </Fab></Link> </Box>
       </Grid>
-      </>
+    </>
   )
 }
 

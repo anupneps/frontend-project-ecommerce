@@ -27,7 +27,7 @@ const Navbar: React.FC = () => {
     const colorMode = React.useContext(ColorModeContext);
 
     return (
-        <AppBar position='static' sx={{ height: '80px', alignContent: 'center', backgroundColor: "transparent" }}  >
+        <AppBar  position='static' sx={{ height: '80px', alignContent: 'center', backgroundColor: "transparent" }}  >
             <CssBaseline />
             <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 <ImageList sx={{ cursor: 'pointer' }}>
@@ -49,7 +49,6 @@ const Navbar: React.FC = () => {
                             bgcolor: 'background.default',
                             color: 'text.primary',
                             borderRadius: 1,
-
                         }}
                     >
                         <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
@@ -64,7 +63,7 @@ const Navbar: React.FC = () => {
                     <Link style={link} to="/cart"><ShoppingCartIcon sx={{ position: 'relative', top: 3, fontSize: '24px' }} />
                         <span style={{
                             position: 'absolute', color: '#ffffff', top: 25, fontSize: '14px', textAlign: 'center',
-                            borderRadius: '50%', paddingLeft: '2px', paddingRight: '2px', width: '20px', backgroundColor: 'black',
+                            borderRadius: '50%', paddingLeft: '2px', paddingRight: '2px', width: '20px', backgroundColor: '#FFC108',
                             visibility: cartItem.length !== 0 ? 'visible' : 'hidden'
                         }}>{cartItem.length}</span></Link>
                     {userInfo.isAuthenticated ? <Link style={link} to="/profile" ><Avatar alt="User Profile" src={userInfo?.user?.avatar} /></Link> :

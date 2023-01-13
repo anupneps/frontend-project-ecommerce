@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction} from '@reduxjs/toolkit'
+import { createSlice} from '@reduxjs/toolkit'
 import { Product } from '../../types/product'
 
 export interface CartState {
@@ -13,7 +13,7 @@ const cartSlice = createSlice({
     name: 'cartSlice',
     initialState:initialState,
     reducers:{
-        add (state, action:PayloadAction<Product>) {
+        add (state, action) {
             const productInCart = state.cart.find(product=>product.id === action.payload.id)
             if(productInCart && productInCart.quantity){
                productInCart.quantity +=1
@@ -21,10 +21,8 @@ const cartSlice = createSlice({
                return
             }
              state.cart.push({...action.payload, quantity:1, subTotal:action.payload.price})
-            //  const cart = JSON.stringify(state)
-            //  localStorage.setItem('cart', cart)
         },
-        remove (state:CartState, action:PayloadAction<Product>) {
+        remove (state, action) {
         state.cart = state.cart.filter(product => product.id!== action.payload.id)
         },
         increment (state, action){
