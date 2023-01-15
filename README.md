@@ -31,6 +31,75 @@ This is a frontend project where an e-commerce web application has been develope
 4. I want to do pagination to display all the products
 5. May be more styling if time allows 
 
+## Project Structure 
+```
+ App.tsx
+│   index.tsx
+│   react-app-env.d.ts
+│   reportWebVitals.ts
+│   setupTests.ts
+│
+├───components
+│       Categories.tsx
+│       ChangeTheme.tsx
+│       Divider.tsx
+│       LoginIn.tsx
+│       MapProducts.tsx
+│       Navbar.tsx
+│       Products.tsx
+│       Register.tsx
+│
+├───hooks
+│       reduxHook.ts
+│
+├───images
+│       banner.png
+│       logo.PNG
+│       logoWhite.PNG
+│
+├───pages
+│       Admin.tsx
+│       Cart.tsx
+│       Footer.tsx
+│       Home.tsx
+│       PageNotFound.tsx
+│       Profile.tsx
+│       SingleProduct.tsx
+│
+├───redux
+│   │   store.ts
+│   │
+│   └───reducers
+│           authenticationReducer.ts
+│           cartReducer.ts
+│           categoryReducers.ts
+│           productReducer.ts
+│           userReduer.ts
+│
+├───shared
+│       axiosInstance.ts
+│
+├───test
+│   ├───reducer
+│   │       authenticationReducer.test.ts
+│   │       cartReducer.test.ts
+│   │       product.test.ts
+│   │
+│   ├───shared
+│   │       server.ts
+│   │
+│   └───test-data
+│           productTestData.ts
+│           usersTestData.ts
+│
+└───types
+        authorization.ts
+        category.ts
+        createProduct.ts
+        product.ts
+        StoreInterface.ts
+        users.ts
+```
 ## Instruction to start the project
 
 In the project directory, you can run:
