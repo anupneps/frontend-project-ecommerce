@@ -2,29 +2,38 @@ import {Checkbox, FormControlLabel, Stack, TextField } from '@mui/material'
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
-import { useEffect, useState } from 'react'
+import { useEffect} from 'react'
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHook'
 import { Divider } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom'
-
+import * as yup from "yup";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup'
 
 import { autheticateUser } from '../redux/reducers/authenticationReducer'
+import { Users } from '../types/users'
+
+
+const schema = yup.object({
+    email: yup.string().email().required("Email is required !"),
+    password: yup.string().min(8).max(32).required("Password is required !"),
+  }).required();
 
 const Login = () => {
+    const{register, handleSubmit, formState:{errors}, reset} = useForm<Users>({
+        resolver:yupResolver(schema)
+    })
     let navigate = useNavigate();
     const routeChange = () => {
         navigate('/')
     }
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
     const userAuth = useAppSelector(state => state.authenticationReducer)
     const dispatch = useAppDispatch()
 
-    const loginHandle = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        e.preventDefault()
+    const loginHandle:SubmitHandler<Users> = (data) => {
         dispatch(autheticateUser({
-            "email": `${email}`,
-            "password": `${password}`
+            "email": `${data.email}`,
+            "password": `${data.password}`
         }))
     }
 
@@ -49,10 +58,12 @@ const Login = () => {
                 <Typography align='center' variant='h4' >LOG IN  </Typography>
                 {/* <Typography>{userAuth.isError ? '' : 'Login Failed'}</Typography>  */}
                 {/* <Typography>{loginStatus}</Typography> */}
-                <TextField variant='outlined' label='E-mail'  placeholder='Email Address' type='email' value={email} required onChange={(e) => setEmail(e.target.value)} ></TextField>
-                <TextField variant='outlined' label='Password' placeholder='Password' type='password' value={password} required onChange={(e) => setPassword(e.target.value)} ></TextField>
+                <TextField {...register('email')} variant='outlined' label='E-mail'  placeholder='Email Address' type='email' required></TextField>
+                <Typography>{errors.email?.message}</Typography>
+                <TextField {...register('password')} variant='outlined' label='Password' placeholder='Password' type='password'  required></TextField>
+                <Typography>{errors.password?.message}</Typography>
                 <FormControlLabel control={<Checkbox defaultChecked color='success' />} label="Remember Me" />
-                <Button onClick={(e) => loginHandle(e)} sx={{bgcolor:'#FFC108'}} variant='contained'>Login</Button>
+                <Button onClick={handleSubmit(loginHandle)} sx={{bgcolor:'#FFC108'}} variant='contained'>Login</Button>
                 <Typography variant='body2' >Forgot Password?<Link to='/signup'> Click here</Link></Typography>
                 <Divider />
                 <Typography variant='body2' >Not registered? <Link to='/signup'>Sign-Up</Link></Typography>

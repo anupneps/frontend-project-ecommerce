@@ -24,8 +24,10 @@ export const createProduct = createAsyncThunk(
     async (product: CreateProduct) => {
         try {
             const jsondata: AxiosResponse<Product, any> = await axiosInstance.post('products', product)
+            console.log('success')
             return jsondata.data
         } catch (error: any) {
+            console.log(error.message)
             throw new Error(error.message)
         }
     }
