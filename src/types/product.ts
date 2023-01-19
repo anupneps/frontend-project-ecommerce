@@ -11,7 +11,25 @@ export interface Product {
     subTotal?:number
 }
 
+
 export interface ModifyProduct{
-    id:number
-    update:Partial<Product>
+    updateId:number|undefined
+    update:{
+        title?:string
+        description?:string
+        price?:number
+        category?: string
+    }
+    
+}
+
+export interface Iprops {
+    title?:string
+    price?: number
+    description?: string
+    category?: string
+    images?: string[]
+    create?: string
+    update?: string
+    cancel?: string 
 }

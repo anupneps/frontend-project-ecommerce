@@ -2,9 +2,10 @@ import { Grid, Card, CardMedia, CardContent, Typography} from '@mui/material'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Category } from '../types/category'
+import { v4 as uuidv4 } from 'uuid';
 
 export interface ProductInterface {
-    key?: number
+  
     id: number
     title: string
     description: string
@@ -23,7 +24,7 @@ const MapProducts = (product: ProductInterface) => {
     }
 
     return (
-        <Grid key={product.key} item xs={6} md={2} sx={cardOnHover} >
+        <Grid key={uuidv4()} item xs={6} md={2} sx={cardOnHover} >
             <Card sx={{ cursor: 'pointer' }}>
                 <Link to={`/products/${product.id}`} > <CardMedia
                     sx={{ height: 200 }}

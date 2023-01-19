@@ -16,7 +16,11 @@ const link = {
     fontWeight: 'bold'
 }
 
-const Navbar: React.FC = () => {
+ interface Iprops{
+    title:string
+}
+
+const Navbar = ({title}:Iprops) => {
     const userInfo = useAppSelector(state => state.authenticationReducer)
     const cartItem = useAppSelector(state => state.cartReducer.cart)
     let navigate = useNavigate();

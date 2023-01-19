@@ -35,9 +35,9 @@ export const createProduct = createAsyncThunk(
 
 export const modifyProduct = createAsyncThunk(
     'modifyProduct',
-    async ({ id, update }: ModifyProduct) => {
+    async ({ updateId, update }: ModifyProduct) => {
         try {
-            const jsondata: AxiosResponse<Product, any> = await axiosInstance.put(`products/${id}`, update)
+            const jsondata: AxiosResponse<Product, any> = await axiosInstance.put(`products/${updateId}`, update)
             return jsondata.data
         } catch (error: any) {
             throw new Error(error.message)
@@ -47,9 +47,9 @@ export const modifyProduct = createAsyncThunk(
 
 export const deleteAproduct = createAsyncThunk(
     'deleteProduct',
-    async (id: number) => {
+    async (productId: number|undefined) => {
         try {
-            const jsondata: AxiosResponse<boolean> = await axiosInstance.delete(`products/${id}`)
+            const jsondata: AxiosResponse<boolean> = await axiosInstance.delete(`products/${productId}`)
             return jsondata.data
         } catch (error: any) {
             throw new Error(error.message)

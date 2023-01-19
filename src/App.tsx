@@ -12,13 +12,12 @@ import Categories from './components/Categories';
 import PageNotFound from './pages/PageNotFound';
 import { useAppSelector } from './hooks/reduxHook';
 import AdminPage from './pages/Admin';
-import CreateProduct from './components/CreateProduct';
 
 const App = () => {
   const userAuthentication = useAppSelector(state => state.authenticationReducer)
   return (
     <BrowserRouter>
-      <Navbar />
+      <Navbar title='Anp' />
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/cart' element={<Cart />}></Route>
@@ -27,7 +26,7 @@ const App = () => {
         <Route path='/login' element={<LoginIn />}></Route>
         <Route path="/products/:id" element={<SingleProduct />}></Route>
         <Route path='/*' element={<PageNotFound />}></Route>
-        <Route path = '/createproduct' element = {<CreateProduct/>}></Route>
+        {/* <Route path = '/createproduct' element = {<AdminPage/>}></Route> */}
         <Route path='/profile'
           element={userAuthentication.isAuthenticated ? <Profile /> : <Navigate replace to={"/login"} />}
         />

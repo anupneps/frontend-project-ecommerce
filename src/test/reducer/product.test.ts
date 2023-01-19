@@ -52,7 +52,7 @@ describe("Testing actions from product reducer", () => {
     test("Should update available product",async () => {
         await store.dispatch(fetchAllProducts())
         await store.dispatch(modifyProduct({
-            id:11,
+            updateId:11,
             update:{
                 price: 600,
                 title:'Testing the modify function'

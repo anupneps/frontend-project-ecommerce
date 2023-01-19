@@ -3,7 +3,7 @@ import CreateNewProduct from "../components/CreateProduct"
 const AdminPage = () => {
    
     return(
-       <CreateNewProduct/>
+       <CreateNewProduct />
     )
 }
 

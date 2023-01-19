@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHook'
 import SearchIcon from '@mui/icons-material/Search';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import { v4 as uuidv4 } from 'uuid';
 
 import { Product } from '../types/product'
 import MapProducts from './MapProducts'
@@ -44,7 +45,7 @@ const Categories = () => {
     const renderProduct = (product: Product) => {
         return (
             <MapProducts
-                key={product.id}
+                key={uuidv4()}
                 id={product.id}
                 title={product.title}
                 images={product.images}
