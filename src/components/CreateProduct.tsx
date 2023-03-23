@@ -1,7 +1,7 @@
 import { Grid, Stack, Typography, TextField, Button } from "@mui/material";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useAppDispatch } from "../hooks/reduxHook";
-import { createProduct, createProductWithForm } from "../redux/reducers/productReducer";
+// import { useAppDispatch } from "../hooks/reduxHook";
+// import { createProduct, createProductWithForm } from "../redux/reducers/productReducer";
 import { CreateProduct } from "../types/createProduct";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup'
@@ -21,7 +21,7 @@ const CreateNewProduct = () => {
         resolver: yupResolver(schema)
     });
 
-    const dispatch = useAppDispatch()
+    // const dispatch = useAppDispatch()
     const onSubmit: SubmitHandler<CreateProduct> = (data) => {
         // dispatch(createProduct(
         //     {
