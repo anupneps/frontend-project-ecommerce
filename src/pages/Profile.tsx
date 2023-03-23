@@ -55,10 +55,26 @@ const Profile = () => {
                 <TableBody>
                     <TableRow>
                         <TableCell>
-                            {'Name'}
+                            {'First Name'}
                         </TableCell>
                         <TableCell>
-                            {userInfo?.user?.name}
+                            {userInfo?.user?.firstName}
+                        </TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell>
+                            {'Last Name'}
+                        </TableCell>
+                        <TableCell>
+                            {userInfo?.user?.lastName}
+                        </TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell>
+                            {'User Name'}
+                        </TableCell>
+                        <TableCell>
+                            {userInfo?.user?.userName}
                         </TableCell>
                     </TableRow>
                     <TableRow>
@@ -67,22 +83,6 @@ const Profile = () => {
                         </TableCell>
                         <TableCell>
                             {userInfo?.user?.email}
-                        </TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell>
-                            {'Password'}
-                        </TableCell>
-                        <TableCell >
-                            {userInfo?.user?.password}
-                        </TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell>
-                            {'Role'}
-                        </TableCell>
-                        <TableCell >
-                            {userInfo?.user?.role}
                         </TableCell>
                     </TableRow>
                 </TableBody>

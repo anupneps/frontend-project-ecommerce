@@ -12,6 +12,9 @@ const initialState: AuthState = {
     isAuthenticated: false,
     user: {
         id: null,
+        firstName:'',
+        lastName:'',
+        userName:'',
         email: '',
         password: '',
         name: '',
@@ -20,7 +23,6 @@ const initialState: AuthState = {
         access_token: ''
     }
 }
-
 
 export const createUser = createAsyncThunk(
     "createUser",
@@ -50,7 +52,7 @@ export const autheticateUser = createAsyncThunk(
                 {
                     headers:
                         // { Authorization: `Bearer ${response.data.access_token}` }
-                        { Authorization: `Bearer ${userToken.access_token}` }
+                        { Authorization: `Bearer ${userToken}` }
                 })
             return (response.data.access_token, sessionInfo.data)
         } catch (error) {

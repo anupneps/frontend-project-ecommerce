@@ -41,7 +41,7 @@ const Navbar = ({title}:Iprops) => {
                     }
                 </ImageList>
                 <Typography variant='body1' sx={{ color: '#1a5db6' }}>
-                    {userInfo.isAuthenticated ? 'Hello ' + userInfo.user?.name : ' '}
+                    {userInfo.isAuthenticated ? 'Hello ' + userInfo.user?.userName : ' '}
                 </Typography>
 
                 <Box mt={2} marginRight={2} sx={{ color: 'red', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
