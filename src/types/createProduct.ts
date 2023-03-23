@@ -3,5 +3,5 @@ export interface CreateProduct{
     price:number
     description:string
     categoryId:number
-    images: string[]
+    images:string[]
 }

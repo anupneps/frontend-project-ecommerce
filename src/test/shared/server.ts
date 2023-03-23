@@ -22,6 +22,20 @@ const handler = [
             ctx.json(product)
         )
     }),
+    rest.post("https://api.escuelajs.co/api/v1/files/upload",async (req, res, ctx) => {
+        const file:File = await req.json()
+        res(
+            ctx.json(
+                {
+                    orginalname: file.name,
+                    filename: file.name,
+                    location: `https://api.escuelajs.co/api/v1/files/${file.name}`
+                }
+            )
+        )
+    }),
+
+
     rest.put("https://api.escuelajs.co/api/v1/products/:id", async (req, res, ctx) => {
         const update: Partial<Product> = await req.json()
         const { id } = req.params as any

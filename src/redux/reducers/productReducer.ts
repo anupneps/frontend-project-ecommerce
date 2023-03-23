@@ -7,6 +7,11 @@ import { ModifyProduct, Product } from "../../types/product";
 
 const initialState: Product[] = []
 
+export interface CreateProductWithForm{
+    image:File,
+    product:CreateProduct
+}
+
 export const fetchAllProducts = createAsyncThunk(
     'fetchAllProducts',
     async () => {
@@ -29,6 +34,30 @@ export const createProduct = createAsyncThunk(
         } catch (error: any) {
             console.log(error.message)
             throw new Error(error.message)
+        }
+    }
+)
+export const createProductWithForm = createAsyncThunk(
+    'createProductWithForm',
+    async({
+        image, 
+        product
+    }: CreateProductWithForm)=> {
+        try {
+            const response = await axiosInstance.post("files/upload", image, {
+                headers:{
+                    "Content-Type":"multipart/form-data"
+                }
+            })
+            const data = response.data.location
+            console.log("location:", data)
+            const productResponse = await axiosInstance.post("products", {
+                ...product, 
+                images:[...product.images, data]
+            })
+            return productResponse.data
+        } catch (error) {
+            
         }
     }
 )
@@ -109,6 +138,13 @@ const productSlice = createSlice({
                     }
                     return product
                 })
+            })
+            .addCase(createProductWithForm.fulfilled, (state,action)=>{
+                if (action.payload) {
+                    state.push(action.payload)
+                } else {
+                    return state
+                }
             })
     }
 })

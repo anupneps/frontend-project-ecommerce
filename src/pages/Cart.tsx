@@ -58,7 +58,7 @@ const Cart: React.FC = () => {
                      <Card key={product.id} sx={{ cursor: 'pointer', display: 'flex', padding: '10px' }}>
                         <CardMedia
                            sx={{ height: 200, width: 200 }}
-                           image={product.images[0]}
+                           image={product.images[0].url}
                         />
                         <CardContent sx={{ textAlign: 'left', width: '40%', padding: '10px' }}>
                            <Typography variant='body2' gutterBottom  >

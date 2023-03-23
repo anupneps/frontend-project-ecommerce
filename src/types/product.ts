@@ -1,4 +1,5 @@
 import { Category } from "./category"
+import { Image } from "./Image"
 
 export interface Product {
     id: number
@@ -6,7 +7,7 @@ export interface Product {
     description:string
     price:number
     category: Category
-    images:string[]
+    images:Image[]
     quantity?:number
     subTotal?:number
 }

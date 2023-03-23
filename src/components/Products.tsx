@@ -13,8 +13,8 @@ import { Link } from 'react-router-dom'
 const Products = () => {
   const dispatch = useAppDispatch()
   const products = useAppSelector(state => state.productReducer)
-  const featuredProductsList = products.slice(11, 23)
-  const recommondedProductsList = products.slice(45, 57)
+  const featuredProductsList = products.slice(0, 12)
+  // const recommondedProductsList = products.slice(45, 57)
 
   useEffect(() => {
     dispatch(fetchAllProducts())
@@ -53,21 +53,20 @@ const Products = () => {
   return (
     <>
       <DividerComponent title={'Featured Products'} />
-      <Grid container spacing={2} width={'auto'} margin={'30px'} marginTop={'10px'}>
+      <Grid container spacing={2} width={'auto'} height={'auto'} margin={'30px'} marginTop={'10px'}>
         {featuredProductsList.map(renderProduct)}
         <Box sx={boxLayout} > <Link to='/categories'><Fab sx={hover} color="primary" aria-label="More">
           <AddTwoToneIcon />
         </Fab></Link> </Box>
-        
-        
       </Grid>
-      <DividerComponent title={'Recommended Products'} />
+
+      {/* <DividerComponent title={'Recommended Products'} />
       <Grid container spacing={2} width={'auto'} margin={'30px'} marginTop={'10px'}>
         {(recommondedProductsList).map(renderProduct)}
         <Box sx={boxLayout} > <Link to='/categories'><Fab sx={hover} color="primary" aria-label="More">
           <AddTwoToneIcon />
         </Fab></Link> </Box>
-      </Grid>
+      </Grid> */}
     </>
   )
 }

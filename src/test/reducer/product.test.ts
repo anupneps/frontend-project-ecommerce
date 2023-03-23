@@ -1,4 +1,4 @@
-import { createProduct, deleteAproduct,fetchAllProducts, modifyProduct, sortByName, sortByPrice } from "../../redux/reducers/productReducer"
+import { createProduct, createProductWithForm, CreateProductWithForm, deleteAproduct,fetchAllProducts, modifyProduct, sortByName, sortByPrice } from "../../redux/reducers/productReducer"
 import { createStore } from "../../redux/store"
 import { CreateProduct } from "../../types/createProduct"
 import { StoreInterface } from "../../types/StoreInterface"
@@ -49,6 +49,42 @@ describe("Testing actions from product reducer", () => {
         await store.dispatch(createProduct(newProduct))
         expect(store.getState().productReducer.length).toBe(0)
     })
+    test("Should create a product with form data",async () => {
+        const image:File = {
+            lastModified: 0,
+            name: "test file image",
+            webkitRelativePath: "",
+            size: 0,
+            type: "",
+            arrayBuffer: function (): Promise<ArrayBuffer> {
+                throw new Error("Function not implemented.")
+            },
+            slice: function (start?: number | undefined, end?: number | undefined, contentType?: string | undefined): Blob {
+                throw new Error("Function not implemented.")
+            },
+            stream: function () {
+                throw new Error("Function not implemented.")
+            },
+            text: function (): Promise<string> {
+                throw new Error("Function not implemented.")
+            }
+        }
+        const product:CreateProduct = {
+            title:'A',
+            price:500,
+            description:'creating a new product',
+            categoryId:2,
+            images:[]
+        }
+        await store.dispatch(createProductWithForm({image, product}))
+        expect(store.getState().productReducer.length).toBe(1)
+    })
+
+
+
+
+
+
     test("Should update available product",async () => {
         await store.dispatch(fetchAllProducts())
         await store.dispatch(modifyProduct({

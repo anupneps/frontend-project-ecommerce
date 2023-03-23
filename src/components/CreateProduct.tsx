@@ -1,10 +1,11 @@
 import { Grid, Stack, Typography, TextField, Button } from "@mui/material";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useAppDispatch } from "../hooks/reduxHook";
-import { createProduct } from "../redux/reducers/productReducer";
+import { createProduct, createProductWithForm } from "../redux/reducers/productReducer";
 import { CreateProduct } from "../types/createProduct";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup'
+
 
 const schema = yup.object({
     title: yup.string().required('Title cannot be empty').min(6),
@@ -22,16 +23,27 @@ const CreateNewProduct = () => {
 
     const dispatch = useAppDispatch()
     const onSubmit: SubmitHandler<CreateProduct> = (data) => {
-        dispatch(createProduct(
-            {
-                'title': `${data.title}`,
-                'price': data.price,
-                'description': `${data.description}`,
-                'categoryId': data.categoryId,
-                'images': ['https://cdn.pixabay.com/photo/2012/04/12/19/05/coat-30208__340.png']
-            }
-        ))
-        console.log(data)
+        // dispatch(createProduct(
+        //     {
+        //         'title': `${data.title}`,
+        //         'price': data.price,
+        //         'description': `${data.description}`,
+        //         'categoryId': data.categoryId,
+        //         'images': ['https://cdn.pixabay.com/photo/2012/04/12/19/05/coat-30208__340.png']
+        //     }
+        // ))
+        // dispatch(createProductWithForm({
+        //     image: data.images,
+        //     product: {
+        //         'title': `${data.title}`,
+        //         'price': data.price,
+        //         'description': `${data.description}`,
+        //         'categoryId': data.categoryId,
+        //     }
+
+        // }))
+
+        console.log(data.images)
         reset()
     }
 
@@ -58,7 +70,7 @@ const CreateNewProduct = () => {
                     <TextField {...register("categoryId")} variant='outlined' label='Category Id' type='number'></TextField>
                     <Typography>{errors.categoryId?.message} </Typography>
                     <TextField variant="outlined" label="Upload Images" disabled ></TextField>
-                    <TextField {...register("images")} type='file' inputProps={{ multiple: true }} onChange={(e) => console.log(e.target)}></TextField>
+                    <TextField {...register(`images.${0}`)} type='file' inputProps={{ multiple: true }}></TextField>
                     {/* <Typography>{errors.images?.message} </Typography>  */}
                     <Button type="submit" sx={{ bgcolor: '#FFC108' }} variant='contained'>Create Product</Button>
                     <Button type="submit" sx={{ bgcolor: '#FFC108' }} variant='contained'>Cancel</Button>

@@ -26,7 +26,7 @@ const App = () => {
         <Route path='/login' element={<LoginIn />}></Route>
         <Route path="/products/:id" element={<SingleProduct />}></Route>
         <Route path='/*' element={<PageNotFound />}></Route>
-        {/* <Route path = '/createproduct' element = {<AdminPage/>}></Route> */}
+        <Route path = '/createproduct' element = {<AdminPage/>}></Route>
         <Route path='/profile'
           element={userAuthentication.isAuthenticated ? <Profile /> : <Navigate replace to={"/login"} />}
         />

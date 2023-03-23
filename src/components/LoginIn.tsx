@@ -13,7 +13,6 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { autheticateUser } from '../redux/reducers/authenticationReducer'
 import { Users } from '../types/users'
 
-
 const schema = yup.object({
     email: yup.string().email().required("Email is required !"),
     password: yup.string().min(8).max(32).required("Password is required !"),

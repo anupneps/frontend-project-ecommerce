@@ -88,7 +88,7 @@ const SingleProduct = () => {
                 }}>
                     {singleProduct ? <Button onClick={() => (reRoute())} sx={{ color: '#1a5db6' }} variant='text'> <ArrowBackIcon /> </Button> : <Button></Button>}
                     <Card sx={{ display: 'flex', justifyContent: 'space-around', margin: '10px', padding: '5px' }}>
-                        {singleProduct?.images.map((image) => <CardMedia key={uuidv4()} sx={{ height: 400, width: 400 }} image={image} />)}
+                        {singleProduct?.images.map((image) => <CardMedia key={uuidv4()} sx={{ height: 400, width: 400 }} image={image.url} />)}
                     </Card>
                     <Table >
                         <TableHead  >

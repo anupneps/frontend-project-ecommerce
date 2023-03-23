@@ -21,7 +21,7 @@ const Profile = () => {
     }
 
     const handleLogout = () => {
-        dispatch(logout(userInfo.user))
+        dispatch(logout(userInfo))
         dispatch(emptyCart(cartItem))
         routeChange()
     }
