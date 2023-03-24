@@ -10,7 +10,9 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { Users } from '../types/users'
 
 const schema = yup.object({
-  name: yup.string().required("Name is required !").max(20),
+  firstName: yup.string().required("Name is required !").max(20),
+  lastName: yup.string().required("Name is required !").max(20),
+  userName: yup.string().required("Name is required !").max(50),
   email: yup.string().email().required("Email is required !"),
   password: yup.string().min(8).max(32).required("Password is required !"),
 }).required();
@@ -29,9 +31,12 @@ const Register = () => {
 
   const dispatch = useAppDispatch()
   const signUp: SubmitHandler<Users> = (data) => {
+    console.log(data)
     dispatch(createUser({
-      'name': `${data.name}`,
+      'firstName': `${data.firstName}`,
+      'lastName': `${data.lastName}`,
       'email': `${data.email}`,
+      'userName':`${data.userName}`,
       'password': `${data.password}`,
       'avatar': `https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png`
     }))
@@ -58,7 +63,11 @@ const Register = () => {
         <Typography align='center' variant='h4' >SIGN UP  </Typography>
         <Typography>{signUpSuccess ? 'SignUp Successful!' : ''}</Typography>
         <Typography>{signUpError ? '' : 'SignUp Failed! Try Again!'}</Typography>
-        <TextField {...register('name')} variant='outlined' label='Name' placeholder='Name' type='text' required></TextField>
+        <TextField {...register('firstName')} variant='outlined' label='FirstName' placeholder='First Name' type='text' required></TextField>
+        <Typography>{errors.name?.message}</Typography>
+        <TextField {...register('lastName')} variant='outlined' label='LastName' placeholder='Last Name' type='text' required></TextField>
+        <Typography>{errors.name?.message}</Typography>
+        <TextField {...register('userName')} variant='outlined' label='UserName' placeholder='User Name' type='text' required></TextField>
         <Typography>{errors.name?.message}</Typography>
         <TextField {...register('email')} variant='outlined' label='E-mail' placeholder='Email Address' type='email' required></TextField>
         <Typography>{errors.email?.message}</Typography>

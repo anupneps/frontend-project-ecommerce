@@ -8,7 +8,16 @@ import reportWebVitals from './reportWebVitals';
 import ToggleColorMode from './components/ChangeTheme';
 
 
-store.subscribe(() => saveState(store.getState()))
+store.subscribe(() =>{
+  saveState(store.getState())
+  const state = store.getState();
+
+  if(state.authenticationReducer.isAuthenticated){
+    localStorage.setItem('token', JSON.stringify(state.authenticationReducer.token))
+  } else{
+    localStorage.removeItem('token');
+  }
+}); 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 

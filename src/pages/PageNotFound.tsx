@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 const PageNotFound = () => {
     const navigate = useNavigate()
-    const reRoute =()=>{
+    const reRoute = () => {
         navigate('/')
     }
     return (
@@ -14,7 +14,7 @@ const PageNotFound = () => {
                 alignItems: 'center',
                 flexDirection: 'column',
                 padding: '20px',
-                marginTop:'14em'
+                marginTop: '14em'
             }}
         >
             <Typography variant="h1" style={{ color: '#1a5db6' }}>
@@ -23,7 +23,7 @@ const PageNotFound = () => {
             <Typography variant="h6" style={{ color: '#1a5db6' }}>
                 This page doesnot exist !
             </Typography>
-            <Button onClick={reRoute} variant="contained" sx={{marginTop:'20px', backgroundColor: '#ffc108'}}>Back To Home</Button>
+            <Button onClick={reRoute} variant="contained" sx={{ marginTop: '20px', backgroundColor: '#ffc108' }}>Back To Home</Button>
         </Box>
     )
 }

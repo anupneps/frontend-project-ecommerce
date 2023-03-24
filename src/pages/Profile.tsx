@@ -10,7 +10,6 @@ import { useAppDispatch, useAppSelector } from '../hooks/reduxHook'
 import { logout } from '../redux/reducers/authenticationReducer'
 import { emptyCart } from '../redux/reducers/cartReducer'
 
-
 const Profile = () => {
     const dispatch = useAppDispatch()
     const userInfo = useAppSelector(state => state.authenticationReducer)
@@ -21,7 +20,7 @@ const Profile = () => {
     }
 
     const handleLogout = () => {
-        dispatch(logout(userInfo))
+        dispatch(logout())
         dispatch(emptyCart(cartItem))
         routeChange()
     }

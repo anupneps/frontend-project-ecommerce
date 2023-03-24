@@ -37,7 +37,6 @@ const Categories = () => {
         dispatch(fetchAllCategories())
     }, [dispatch])
 
-
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setSearchProduct(e.target.value)
     }
@@ -84,10 +83,6 @@ const Categories = () => {
         setRenderDisplay(true)
     }
 
-    const getAllProducts = () => {
-        dispatch(fetchAllProducts())
-    }
-
     return (
         <>
             <Box display={'flex'} justifyContent='center' flexDirection={'column'} height={'100%'} >
@@ -112,9 +107,9 @@ const Categories = () => {
                     padding={'20px'}
                     marginTop={'40px'}
                     flexWrap={'wrap'}>
-                    <Button onClick={getAllProducts} sx={{bgcolor:'#FFC108'}} color='primary' variant='contained' >All Products</Button>
+                    <Button sx={{bgcolor:'#FFC108'}} color='primary' variant='contained' >All Products</Button>
                     {productsCategories.map(name => (
-                        <Button data-value={name.name} onClick={categoriesOnClick} sx={{bgcolor:'#FFC108'}} color='primary' variant='contained' >{name.name}</Button>
+                        <Button key={uuidv4()} data-value={name.name} onClick={categoriesOnClick} sx={{bgcolor:'#FFC108'}} color='primary' variant='contained' >{name.name}</Button>
                     ))
                     }
                 </Box>

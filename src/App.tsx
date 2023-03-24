@@ -30,6 +30,7 @@ const App = () => {
         <Route path='/profile'
           element={userAuthentication.isAuthenticated ? <Profile /> : <Navigate replace to={"/login"} />}
         />
+        {/* <Route path='/admin' element={<AdminPage/>}></Route> */}
         <Route path='/admin'
           element={userAuthentication.isAuthenticated && userAuthentication.user?.role === 'admin' ?
             <AdminPage /> : <Navigate replace to={"/404"} />}

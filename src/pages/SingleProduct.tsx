@@ -69,28 +69,28 @@ const SingleProduct = () => {
     }
 
     return (
-        <TableContainer component={Paper}
-            sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-                justifySelf: 'center',
-                width: '100%',
-                position: 'relative'
+    <TableContainer component={Paper}
+        sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            justifySelf: 'center',
+            width: '100%',
+            position: 'relative'
+        }}>
+        {isEditing ?
+            <Box sx={{
+                margin: '5%',
+                width: '50%',
+                overflow: 'hidden',
+                padding: '20px'
             }}>
-            {isEditing ?
-                <Box sx={{
-                    margin: '5%',
-                    width: '50%',
-                    overflow: 'hidden',
-                    padding: '20px'
-                }}>
-                    {singleProduct ? <Button onClick={() => (reRoute())} sx={{ color: '#1a5db6' }} variant='text'> <ArrowBackIcon /> </Button> : <Button></Button>}
-                    <Card sx={{ display: 'flex', justifyContent: 'space-around', margin: '10px', padding: '5px' }}>
-                        {singleProduct?.images.map((image) => <CardMedia key={uuidv4()} sx={{ height: 400, width: 400 }} image={image.url} />)}
-                    </Card>
-                    <Table >
+                {singleProduct ? <Button onClick={() => (reRoute())} sx={{ color: '#1a5db6' }} variant='text'> <ArrowBackIcon /> </Button> : <Button></Button>}
+                <Card sx={{ display: 'flex', justifyContent: 'space-around', margin: '10px', padding: '5px' }}>
+                    {singleProduct?.images.map((image) => <CardMedia key={uuidv4()} sx={{ height: 400, width: 400 }} image={image.url} />)}
+                </Card>
+                <Table >
                         <TableHead  >
                             <TableRow>
                                 <TableCell></TableCell>
@@ -131,33 +131,32 @@ const SingleProduct = () => {
                                 </TableCell>
                             </TableRow>
                         </TableBody>
-                    </Table>
-                    <CardActions>
-                        {singleProduct ? <Button onClick={() => addToCart(singleProduct)} sx={{ bgcolor: '#FFC108' }} variant='contained'> Add To Cart </Button> : <Button>Add to Cart</Button>}
-                        {singleProduct && userAuthentication.isAuthenticated && userAuthentication.user?.role === 'admin' ? 
-                        <Button onClick={editProduct} sx={{ bgcolor: '#FFC108' }} variant='contained'> Edit </Button> : ''}
-                        {singleProduct && userAuthentication.isAuthenticated && userAuthentication.user?.role === 'admin' ? 
-                        <Button onClick={deleteProduct} sx={{ bgcolor: '#FFC108' }} variant='contained'> Delete </Button> : ''}
-                    </CardActions>
-                </Box> :
-                <Box sx={{
-                    margin: '5%',
-                    width: '50%',
-                    overflow: 'hidden',
-                    padding: '20px'
-                }}>
-                    <EditProduct
-                        cancelButtonLabel='Cancel' buttonLabel='Update' onUpdateProduct={updateProduct} cancelBtn={reRouteToSingleProductPage}
-                        iTitle={singleProduct?.title}
-                        iPrice={singleProduct?.price}
-                        iDescription={singleProduct?.description}
-                        iCategory={singleProduct?.category.name}
-                    />
-                </Box>
-            }
-
-        </TableContainer >
-
+                </Table>
+                <CardActions>
+                    {singleProduct ? <Button onClick={() => addToCart(singleProduct)} sx={{ bgcolor: '#FFC108' }} variant='contained'> Add To Cart </Button> : <Button>Add to Cart</Button>}
+                    {singleProduct && userAuthentication.isAuthenticated && userAuthentication.user?.role === 'admin' ? 
+                    <Button onClick={editProduct} sx={{ bgcolor: '#FFC108' }} variant='contained'> Edit </Button> : ''}
+                    {singleProduct && userAuthentication.isAuthenticated && userAuthentication.user?.role === 'admin' ? 
+                    <Button onClick={deleteProduct} sx={{ bgcolor: '#FFC108' }} variant='contained'> Delete </Button> 
+                    : ''}
+                </CardActions>
+            </Box> :
+            <Box sx={{
+                margin: '5%',
+                width: '50%',
+                overflow: 'hidden',
+                padding: '20px'
+            }}>
+                <EditProduct
+                    cancelButtonLabel='Cancel' buttonLabel='Update' onUpdateProduct={updateProduct} cancelBtn={reRouteToSingleProductPage}
+                    iTitle={singleProduct?.title}
+                    iPrice={singleProduct?.price}
+                    iDescription={singleProduct?.description}
+                    iCategory={singleProduct?.category.name}
+                />
+            </Box>
+        }
+    </TableContainer>
     )
 }
 

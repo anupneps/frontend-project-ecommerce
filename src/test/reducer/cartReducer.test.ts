@@ -50,9 +50,4 @@ describe("Testing actions from cart reducer", () => {
     })
 })
 
-
-
-
-
-
 export {}

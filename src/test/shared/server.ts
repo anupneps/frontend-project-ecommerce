@@ -6,12 +6,12 @@ import { testProductData } from "../test-data/productTestData"
 import { users } from "../test-data/usersTestData"
 
 const handler = [
-    rest.get("https://api.escuelajs.co/api/v1/products", (req, res, ctx) => {
+    rest.get("https://orderlyonclick.azurewebsites.net/api/v1/products", (req, res, ctx) => {
         return res(
             ctx.json(testProductData)
         )
     }),
-    rest.post("https://api.escuelajs.co/api/v1/products", async (req, res, ctx) => {
+    rest.post("https://orderlyonclick.azurewebsites.net/api/v1/products", async (req, res, ctx) => {
         const product: CreateProduct = await req.json()
         if (product.price < 1) {
             return res(
@@ -35,8 +35,7 @@ const handler = [
         )
     }),
 
-
-    rest.put("https://api.escuelajs.co/api/v1/products/:id", async (req, res, ctx) => {
+    rest.put("https://orderlyonclick.azurewebsites.net/api/v1/products/:id", async (req, res, ctx) => {
         const update: Partial<Product> = await req.json()
         const { id } = req.params as any
         const foundProduct = testProductData.find((product => product.id === parseInt(id)))
@@ -50,7 +49,7 @@ const handler = [
             )
         }
     }),
-    rest.delete(`https://api.escuelajs.co/api/v1/products/:id`, async (req, res, ctx) => {
+    rest.delete(`https://orderlyonclick.azurewebsites.net/api/v1/products/:id`, async (req, res, ctx) => {
         // const productToDelete: Product = await req.json()
         // const { id } = req.params as any;
         const id = await req.json()
@@ -64,12 +63,12 @@ const handler = [
             )
         }
     }),
-    rest.get("https://api.escuelajs.co/api/v1/users", (req, res, ctx) => {
+    rest.get("https://orderlyonclick.azurewebsites.net/api/v1/users", (req, res, ctx) => {
         return res(
             ctx.json(users)
         )
     }),
-    rest.post("https://api.escuelajs.co/api/v1/users/", async (req, res, ctx) => {
+    rest.post("https://orderlyonclick.azurewebsites.net/api/v1/users/", async (req, res, ctx) => {
         const user = await req.json()
         ctx.json(user)
     })

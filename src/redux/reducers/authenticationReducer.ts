@@ -10,6 +10,7 @@ const initialState: AuthState = {
     isLoading: false,
     isError: false,
     isAuthenticated: false,
+    token:undefined,
     user: {
         id: null,
         firstName:'',
@@ -36,25 +37,20 @@ export const createUser = createAsyncThunk(
     }
 )
 
-const userTokenFromLocalStorage = localStorage.getItem("token")
-const userToken = userTokenFromLocalStorage? JSON.parse(userTokenFromLocalStorage):''
-
 export const autheticateUser = createAsyncThunk(
     "authenticateUser",
     async (user: Users) => {
         try {
-            const response: AxiosResponse<Users, Users> = await axiosInstance.post("authentication", user)
-            console.log(response.data)
+            const response: AxiosResponse<string, null> = await axiosInstance.post("authentication", user)
+            const tokenReceived = response.data 
             console.log("Login Successful")
-           
-            localStorage.setItem("token", JSON.stringify(response.data))
-            const sessionInfo = await axiosInstance.get('authentication/profile',
+        
+            const sessionInfo: AxiosResponse<Users> = await axiosInstance.get('authentication/profile',
                 {
                     headers:
-                        // { Authorization: `Bearer ${response.data.access_token}` }
-                        { Authorization: `Bearer ${userToken}` }
+                        { Authorization: `Bearer ${tokenReceived}` }
                 })
-            return (response.data.access_token, sessionInfo.data)
+            return {token:tokenReceived, user:sessionInfo.data}
         } catch (error) {
             console.log(error)
         }
@@ -65,9 +61,9 @@ const authenticationSlice = createSlice({
     name: 'authenciationSlice',
     initialState: initialState,
     reducers: {
-        logout(state, action) {
-            state.user = null
+        logout(state) {
             state.isAuthenticated = false
+            state.token = undefined;
             localStorage.clear()
         }
 
@@ -78,13 +74,9 @@ const authenticationSlice = createSlice({
         build.addCase(autheticateUser.fulfilled, (state, action) => {
             state.isSuccess = true
             state.isLoading = false
-            state.user = action.payload
-            if (state.user) {
-                state.isAuthenticated = true
-            } else {
-                state.isAuthenticated = false
-                state.isError = true
-            }
+            state.isAuthenticated = true
+            state.token = action.payload?.token
+            state.user = action.payload?.user
         })
         build.addCase(autheticateUser.rejected, (state, action) => {
             state.isError = true
@@ -101,7 +93,6 @@ const authenticationSlice = createSlice({
             state.isError = true
         })
     },
-
 })
 
 const authenticationReducer = authenticationSlice.reducer

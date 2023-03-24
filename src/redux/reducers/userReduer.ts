@@ -18,7 +18,6 @@ export const getAllUsers = createAsyncThunk(
     }
 )
 
-
 export const createUser = createAsyncThunk(
     "createUser",
     async (user: Users) => {
@@ -50,10 +49,10 @@ const userSlice = createSlice({
             .addCase(getAllUsers.fulfilled, (state, action) => {
                 if (!action.payload) {
                     return state
-                } else{
+                } else {
                     state = [action.payload]
                 }
-                
+
             })
     }
 })

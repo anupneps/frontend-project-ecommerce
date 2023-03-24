@@ -6,4 +6,5 @@ export interface AuthState {
     isSuccess: boolean
     isLoading: boolean
     isError: boolean
+    token: string|undefined
 }

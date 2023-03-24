@@ -1,9 +1,6 @@
-import { createUser } from "../../redux/reducers/authenticationReducer";
-import { getAllUsers } from "../../redux/reducers/userReduer";
 import { createStore } from "../../redux/store";
 import { StoreInterface } from "../../types/StoreInterface";
 import server from "../shared/server";
-
 
 let store: StoreInterface
 

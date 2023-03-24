@@ -80,11 +80,6 @@ describe("Testing actions from product reducer", () => {
         expect(store.getState().productReducer.length).toBe(1)
     })
 
-
-
-
-
-
     test("Should update available product",async () => {
         await store.dispatch(fetchAllProducts())
         await store.dispatch(modifyProduct({
@@ -117,7 +112,6 @@ describe("Testing actions from product reducer", () => {
         await store.dispatch(deleteAproduct(testProductData[1].id))
         expect(store.getState().productReducer[1].id).toBe(11)
     })
-
 })
 
 

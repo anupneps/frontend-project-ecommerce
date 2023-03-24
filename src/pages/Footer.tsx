@@ -4,7 +4,6 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
-
 const Footer = () => {
     const theme = useTheme();
     const link = {
@@ -60,7 +59,6 @@ const Footer = () => {
                 </Box>
             </Toolbar>
         </AppBar>
-
     )
 }
 
