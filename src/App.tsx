@@ -12,6 +12,7 @@ import Categories from './components/Categories';
 import PageNotFound from './pages/PageNotFound';
 import { useAppSelector } from './hooks/reduxHook';
 import AdminPage from './pages/Admin';
+import { About } from './pages/About';
 
 const App = () => {
   const userAuthentication = useAppSelector(state => state.authenticationReducer)
@@ -20,6 +21,7 @@ const App = () => {
       <Navbar title='Anp' />
       <Routes>
         <Route path='/' element={<Home />}></Route>
+        <Route path='/about' element={<About />}></Route>
         <Route path='/cart' element={<Cart />}></Route>
         <Route path='/categories' element={<Categories />}></Route>
         <Route path='/signup' element={<Register />}></Route>
