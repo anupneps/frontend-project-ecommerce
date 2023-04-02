@@ -5,11 +5,14 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-v.4.9-green)
 
 ## Demo
-https://hilarious-pasca-58c602.netlify.app/
+- Frontend: https://hilarious-pasca-58c602.netlify.app/
+- Backend Api (Swagger) : https://orderlyonclick.azurewebsites.net/swagger/index.html
+- For Api Usage : https://orderlyonclick.azurewebsites.net/api/v1/{products/users/categories}
 
 ## Introduction 
-This is a frontend project where an e-commerce web application has been developed using react, redux-toolkit, typescript. For this project, the following API endpoint has been used :
-[https://fakeapi.platzi.com/](https://fakeapi.platzi.com/) 
+This eccommere application namely Orderly is a fullstack project which has been developed using modern frontend technologies such as react and redux. The backend implementation is done using Asp.Net Core and Enity Framework having PostgreSQL as a database. The backend API is being hosted at Azure cloud services.  
+
+## Frontend
 
 ## Features Implemented 
 1. Public Pages : Homepage, Categories, Cart, Login/SignUp
@@ -23,86 +26,23 @@ This is a frontend project where an e-commerce web application has been develope
 7. Once you click on product image, it will redirect to single product page and and it has addToCart button for everyone and  Edit and Delete buttons for admins. 
 8. Theme change has been implemented (MUI example)
 9. Unit test has been done for cart. product and authentication (inprogress)
+10. CRUD operation on products
 
 ## Things to do
-1. Need to do UI for create/modify/delete products, unit test done except for delete and upload images.
-2. Need to Implement validation in forms and error handeling 
-3. Need to implement local storage for cart and user session
-4. I want to do pagination to display all the products
-5. May be more styling if time allows 
+1. User persistance
+2. More UI features and styling
+3. Image upload using Cloudinary
+4. react-toastify for notifications
 
-## Project Structure 
-```
- App.tsx
-│   index.tsx
-│   react-app-env.d.ts
-│   reportWebVitals.ts
-│   setupTests.ts
-│
-├───components
-│       Categories.tsx
-│       ChangeTheme.tsx
-│       Divider.tsx
-│       LoginIn.tsx
-│       MapProducts.tsx
-│       Navbar.tsx
-│       Products.tsx
-│       Register.tsx
-│
-├───hooks
-│       reduxHook.ts
-│
-├───images
-│       banner.png
-│       logo.PNG
-│       logoWhite.PNG
-│
-├───pages
-│       Admin.tsx
-│       Cart.tsx
-│       Footer.tsx
-│       Home.tsx
-│       PageNotFound.tsx
-│       Profile.tsx
-│       SingleProduct.tsx
-│
-├───redux
-│   │   store.ts
-│   │
-│   └───reducers
-│           authenticationReducer.ts
-│           cartReducer.ts
-│           categoryReducers.ts
-│           productReducer.ts
-│           userReduer.ts
-│
-├───shared
-│       axiosInstance.ts
-│
-├───test
-│   ├───reducer
-│   │       authenticationReducer.test.ts
-│   │       cartReducer.test.ts
-│   │       product.test.ts
-│   │
-│   ├───shared
-│   │       server.ts
-│   │
-│   └───test-data
-│           productTestData.ts
-│           usersTestData.ts
-│
-└───types
-        authorization.ts
-        category.ts
-        createProduct.ts
-        product.ts
-        StoreInterface.ts
-        users.ts
-```
 ## Instruction to start the project
 
-In the project directory, you can run:
+Clone the project
+
+- https://github.com/anupneps/fullstack-ecommerce
+
+Go to the project directory
+
+- cd frontend
 
 ### `npm install`
 
@@ -124,3 +64,51 @@ Launches the test runner in the interactive watch mode
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
+
+## Backend
+
+## Features Implemented 
+1. CRUD operation on products, categories for all and on users only for admin 
+2. Also custom api route to get products from each category
+3. Authentication and Autorization
+4. Deployed to Cloud
+5. Api endpoints with query params and pagination
+6. Modular and flexible architecture implementing database-repo-service-controller layers
+
+## Things to do
+1. Add more authorization policies
+2. Add middlewares and more custom exception handlers
+3. Add other custom routes
+
+## Instruction to start the project
+
+In the project directory, you can run:
+
+## Run Locally
+Clone the project
+
+- https://github.com/anupneps/fullstack-ecommerce
+
+Go to the project directory
+
+- cd backend
+
+Install dependecies
+
+- dotnet run
+
+Configure Appsetting file add the following information
+```
+{
+  "AllowedHosts": "*",
+  "Jwt": {
+    "Token": "XXXXXXXX"
+  },
+  "ConnectionStrings": {
+    "DefaultConnection": "XXXX"
+  }
+}
+
+```
+
+
