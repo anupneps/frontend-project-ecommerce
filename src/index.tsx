@@ -7,6 +7,11 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import ToggleColorMode from './components/ChangeTheme';
 
+import { fetchUser } from './redux/reducers/authenticationReducer'
+
+if (localStorage.getItem('token') !== null && localStorage.getItem('user') !== null) {
+  store.dispatch(fetchUser())
+}
 
 store.subscribe(() =>{
   saveState(store.getState())
@@ -14,8 +19,10 @@ store.subscribe(() =>{
 
   if(state.authenticationReducer.isAuthenticated){
     localStorage.setItem('token', JSON.stringify(state.authenticationReducer.token))
+    localStorage.setItem('user', JSON.stringify(state.authenticationReducer.user))
   } else{
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
   }
 }); 
 const container = document.getElementById('root')!;

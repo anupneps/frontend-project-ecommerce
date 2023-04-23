@@ -57,6 +57,27 @@ export const autheticateUser = createAsyncThunk(
     }
 )
 
+export const fetchUser = createAsyncThunk(
+    "fetchUser",
+    async() => {
+        try {
+            const tokenStr = localStorage.getItem('token');
+            const token: string | undefined = tokenStr !== null ? JSON.parse(tokenStr) : undefined
+            const userStr = localStorage.getItem('user');
+            const user: Users | null = userStr !== null ? JSON.parse(userStr) : null
+
+            const userInfo: AxiosResponse<Users> = await axiosInstance.get(`users/${user?.id}`,
+                {
+                    headers:
+                        { Authorization: `Bearer ${token}` }
+                })
+            return {user: userInfo.data, token: token}
+        } catch (error) {
+            throw error
+        }
+    }
+)
+
 const authenticationSlice = createSlice({
     name: 'authenciationSlice',
     initialState: initialState,
@@ -91,6 +112,17 @@ const authenticationSlice = createSlice({
         })
         build.addCase(createUser.rejected, (state, action) => {
             state.isError = true
+        })
+        build.addCase(fetchUser.pending, (state, action) => {
+            state.isLoading = true
+        })
+
+        build.addCase(fetchUser.fulfilled, (state, action) => {
+            state.isSuccess = true
+            state.isLoading = false
+            state.isAuthenticated = true
+            state.user = action.payload?.user
+            state.token = action.payload?.token
         })
     },
 })
